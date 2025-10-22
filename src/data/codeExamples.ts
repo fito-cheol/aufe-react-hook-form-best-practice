@@ -61,6 +61,21 @@ const schema = z.object({
 });`,
   },
   {
+    title: "formState.errors 기본 사용",
+    description: "에러 객체를 사용해 필드별 메시지를 표시하는 방법",
+    code: `const { register, handleSubmit, formState: { errors } } = useForm();
+
+<form onSubmit={handleSubmit(onSubmit)}>
+  <input {...register("email", { required: "이메일을 입력해주세요" })} />
+  {errors.email && <span>{errors.email.message}</span>}
+
+  <input type="password" {...register("password", { minLength: { value: 8, message: "8자 이상" } })} />
+  {errors.password && <span>{errors.password.message}</span>}
+
+  <button type="submit">제출</button>
+</form>`,
+  },
+  {
     title: "zodResolver 연동",
     description: "React Hook Form과 Zod를 연결하는 zodResolver 사용법",
     code: `import { useForm } from "react-hook-form";
