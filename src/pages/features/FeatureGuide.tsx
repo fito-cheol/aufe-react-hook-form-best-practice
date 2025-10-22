@@ -35,7 +35,7 @@ const FeatureGuide: React.FC = () => {
 
       <div className="examples-grid">
         {featureCatalog.map((feature) => (
-          <div key={feature.id} className="example-card">
+          <div key={feature.id} className="example-card" id={feature.id}>
             <h3>{feature.title}</h3>
             <p>{feature.description}</p>
             <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
