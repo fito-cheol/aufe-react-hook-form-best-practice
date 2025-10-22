@@ -93,7 +93,7 @@
 }
 
 .example-card p {
-  color: #666;
+  color: var(--muted-text);
   margin: 0 0 1rem 0;
   line-height: 1.5;
 }
@@ -332,7 +332,7 @@
   gap: 1rem;
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid #e1e5e9;
+  border-top: 1px solid var(--border);
 }
 
 /* 커스텀 컴포넌트 스타일 */
@@ -344,16 +344,17 @@
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
-  color: #282c34;
+  color: var(--text);
 }
 
 .custom-select {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   font-size: 1rem;
-  background-color: white;
+  background-color: var(--surface);
+  color: var(--text);
 }
 
 .custom-checkbox {
@@ -378,9 +379,10 @@
   width: 100%;
   height: 6px;
   border-radius: 3px;
-  background: #ddd;
+  background: var(--border);
   outline: none;
   -webkit-appearance: none;
+  appearance: none;
 }
 
 .slider::-webkit-slider-thumb {
@@ -389,7 +391,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #61dafb;
+  background: var(--primary);
   cursor: pointer;
 }
 
@@ -397,7 +399,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #61dafb;
+  background: var(--primary);
   cursor: pointer;
   border: none;
 }
@@ -407,21 +409,23 @@
   justify-content: space-between;
   margin-top: 0.5rem;
   font-size: 0.875rem;
-  color: #666;
+  color: var(--muted-text);
 }
 
 .current-value {
   font-weight: 500;
-  color: #61dafb;
+  color: var(--primary);
 }
 
 .custom-textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   font-size: 1rem;
   resize: vertical;
+  background-color: var(--surface);
+  color: var(--text);
 }
 
 /* 파일 업로드 스타일 */
@@ -435,7 +439,7 @@
 
 .file-item {
   padding: 0.5rem 0;
-  border-bottom: 1px solid #e1e5e9;
+  border-bottom: 1px solid var(--border);
 }
 
 .file-item:last-child {
