@@ -48,7 +48,6 @@
 }
 
 .page {
-  text-align: center;
 }
 
 .page h1 {
@@ -56,12 +55,13 @@
   margin-bottom: 1rem;
 }
 
-.page p {
+.page .page-description {
   color: var(--muted-text);
   font-size: 1.1rem;
   line-height: 1.6;
   max-width: 600px;
   margin: 0 auto;
+  text-align: center;
 }
 
 /* 예제 목록 스타일 */
