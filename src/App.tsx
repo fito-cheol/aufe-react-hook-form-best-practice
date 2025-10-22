@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Examples from "./pages/Examples";
 import ExamplesLayout from "./layouts/ExamplesLayout";
 import { Navigate } from "react-router-dom";
+import FeatureGuide from "./pages/features/FeatureGuide";
 import BasicForm from "./pages/examples/BasicForm";
 import Validation from "./pages/examples/Validation";
 import DynamicFields from "./pages/examples/DynamicFields";
@@ -32,6 +33,7 @@ function App() {
             <Route path="/" element={<Navigate to="/examples" replace />} />
             <Route path="/examples" element={<ExamplesLayout />}>
               <Route index element={<Examples />} />
+              <Route path="features" element={<FeatureGuide />} />
               <Route path="basic-form" element={<BasicForm />} />
               <Route path="validation" element={<Validation />} />
               <Route path="dynamic-fields" element={<DynamicFields />} />

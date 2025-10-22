@@ -5,6 +5,7 @@ export interface ExampleNavItem {
 
 export const examplesNavItems: ExampleNavItem[] = [
   { label: "예제 목록", to: "/examples" },
+  { label: "기능별 가이드", to: "/examples/features" },
   { label: "Basic Form", to: "/examples/basic-form" },
   { label: "Validation (Zod)", to: "/examples/validation" },
   { label: "Dynamic Fields", to: "/examples/dynamic-fields" },
