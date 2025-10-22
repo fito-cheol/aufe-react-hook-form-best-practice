@@ -23,7 +23,10 @@ function App() {
           </div>
           <ul className="nav-links">
             <li>
-              <Link to="/examples">Examples</Link>
+              <Link to="/examples">예제 목록</Link>
+            </li>
+            <li>
+              <Link to="/examples/features">기능별 가이드</Link>
             </li>
           </ul>
         </nav>

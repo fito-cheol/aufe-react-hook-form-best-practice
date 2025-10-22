@@ -5,13 +5,12 @@ export interface ExampleNavItem {
 
 export const examplesNavItems: ExampleNavItem[] = [
   { label: "예제 목록", to: "/examples" },
-  { label: "기능별 가이드", to: "/examples/features" },
-  { label: "Basic Form", to: "/examples/basic-form" },
-  { label: "Validation (Zod)", to: "/examples/validation" },
-  { label: "Dynamic Fields", to: "/examples/dynamic-fields" },
-  { label: "File Upload", to: "/examples/file-upload" },
-  { label: "Custom Components", to: "/examples/custom-components" },
-  { label: "Conditional Fields", to: "/examples/conditional-fields" },
-  { label: "Array Fields", to: "/examples/array-fields" },
-  { label: "Nested Objects", to: "/examples/nested-objects" },
+  { label: "기본 폼", to: "/examples/basic-form" },
+  { label: "유효성 검사 (Zod)", to: "/examples/validation" },
+  { label: "동적 필드", to: "/examples/dynamic-fields" },
+  { label: "파일 업로드", to: "/examples/file-upload" },
+  { label: "커스텀 컴포넌트", to: "/examples/custom-components" },
+  { label: "조건부 필드", to: "/examples/conditional-fields" },
+  { label: "배열 필드", to: "/examples/array-fields" },
+  { label: "중첩 객체", to: "/examples/nested-objects" },
 ];
