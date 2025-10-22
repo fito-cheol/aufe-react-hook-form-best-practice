@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm, useFieldArray } from "react-hook-form";
+import CodeExample from "../../components/CodeExample";
+import { dynamicFieldsExamples } from "../../data/codeExamples";
 
 interface FormData {
   name: string;
@@ -64,7 +66,15 @@ const DynamicFields: React.FC = () => {
       </p>
 
       <div className="form-container">
-        <div className="form-actions" style={{ justifyContent: "flex-end", paddingTop: 0, marginTop: 0, borderTop: "none" }}>
+        <div
+          className="form-actions"
+          style={{
+            justifyContent: "flex-end",
+            paddingTop: 0,
+            marginTop: 0,
+            borderTop: "none",
+          }}
+        >
           <button
             type="button"
             className="btn btn-secondary"
@@ -73,13 +83,21 @@ const DynamicFields: React.FC = () => {
                 name: "철수 김",
                 email: "test@example.com",
                 hobbies: [
-                  { id: "1", name: "등산", description: "주말마다 가끔 등산을 합니다" },
-                  { id: "2", name: "요리", description: "파스타와 한식을 즐겨 요리합니다" }
+                  {
+                    id: "1",
+                    name: "등산",
+                    description: "주말마다 가끔 등산을 합니다",
+                  },
+                  {
+                    id: "2",
+                    name: "요리",
+                    description: "파스타와 한식을 즐겨 요리합니다",
+                  },
                 ],
                 skills: [
                   { id: "1", name: "React", level: 4 },
-                  { id: "2", name: "TypeScript", level: 3 }
-                ]
+                  { id: "2", name: "TypeScript", level: 3 },
+                ],
               })
             }
           >
@@ -272,6 +290,16 @@ const DynamicFields: React.FC = () => {
           </li>
           <li>중첩된 유효성 검사와 에러 처리</li>
         </ul>
+        
+        <h3>코드 예시</h3>
+        {dynamicFieldsExamples.map((example, index) => (
+          <CodeExample
+            key={index}
+            title={example.title}
+            description={example.description}
+            code={example.code}
+          />
+        ))}
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import CodeExample from "../../components/CodeExample";
 
 interface FormData {
   name: string;
@@ -62,7 +63,15 @@ const FileUpload: React.FC = () => {
       </p>
 
       <div className="form-container">
-        <div className="form-actions" style={{ justifyContent: "flex-end", paddingTop: 0, marginTop: 0, borderTop: "none" }}>
+        <div
+          className="form-actions"
+          style={{
+            justifyContent: "flex-end",
+            paddingTop: 0,
+            marginTop: 0,
+            borderTop: "none",
+          }}
+        >
           <button
             type="button"
             className="btn btn-secondary"
@@ -306,6 +315,38 @@ const FileUpload: React.FC = () => {
             <code>watch</code>로 실시간 파일 선택 상태 확인
           </li>
         </ul>
+        
+        <h3>코드 예시</h3>
+        <CodeExample
+          title="파일 업로드 기본 사용법"
+          description="React Hook Form을 사용한 파일 업로드 처리 방법"
+          code={`// 파일 타입 정의
+interface FormData {
+  profileImage: FileList;
+  documents: FileList;
+}
+
+// 파일 업로드 필드 등록
+<input
+  type="file"
+  {...register("profileImage", {
+    required: "프로필 이미지를 선택해주세요",
+    validate: (files) => {
+      if (files && files[0]) {
+        const file = files[0];
+        if (file.size > 5 * 1024 * 1024) {
+          return "파일 크기는 5MB 이하여야 합니다";
+        }
+        if (!file.type.startsWith("image/")) {
+          return "이미지 파일만 업로드 가능합니다";
+        }
+      }
+      return true;
+    }
+  })}
+  accept="image/*"
+/>`}
+        />
       </div>
     </div>
   );

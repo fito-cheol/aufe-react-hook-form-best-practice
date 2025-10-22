@@ -1,7 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
 import Examples from "./pages/Examples";
 import BasicForm from "./pages/examples/BasicForm";
 import Validation from "./pages/examples/Validation";
@@ -28,12 +26,6 @@ function App() {
             <li>
               <Link to="/examples">Examples</Link>
             </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
           </ul>
         </nav>
 
@@ -43,14 +35,24 @@ function App() {
             <Route path="/examples" element={<Examples />} />
             <Route path="/examples/basic-form" element={<BasicForm />} />
             <Route path="/examples/validation" element={<Validation />} />
-            <Route path="/examples/dynamic-fields" element={<DynamicFields />} />
+            <Route
+              path="/examples/dynamic-fields"
+              element={<DynamicFields />}
+            />
             <Route path="/examples/file-upload" element={<FileUpload />} />
-            <Route path="/examples/custom-components" element={<CustomComponents />} />
-            <Route path="/examples/conditional-fields" element={<ConditionalFields />} />
+            <Route
+              path="/examples/custom-components"
+              element={<CustomComponents />}
+            />
+            <Route
+              path="/examples/conditional-fields"
+              element={<ConditionalFields />}
+            />
             <Route path="/examples/array-fields" element={<ArrayFields />} />
-            <Route path="/examples/nested-objects" element={<NestedObjects />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route
+              path="/examples/nested-objects"
+              element={<NestedObjects />}
+            />
           </Routes>
         </main>
       </div>

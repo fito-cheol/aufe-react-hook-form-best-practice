@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import CodeExample from "../../components/CodeExample";
+import { basicFormExamples } from "../../data/codeExamples";
 
 interface FormData {
   firstName: string;
@@ -32,7 +34,15 @@ const BasicForm: React.FC = () => {
       </p>
 
       <div className="form-container">
-        <div className="form-actions" style={{ justifyContent: "flex-end", paddingTop: 0, marginTop: 0, borderTop: "none" }}>
+        <div
+          className="form-actions"
+          style={{
+            justifyContent: "flex-end",
+            paddingTop: 0,
+            marginTop: 0,
+            borderTop: "none",
+          }}
+        >
           <button
             type="button"
             className="btn btn-secondary"
@@ -42,7 +52,7 @@ const BasicForm: React.FC = () => {
                 lastName: "김",
                 email: "test@example.com",
                 age: 28,
-                bio: "안녕하세요. React Hook Form 예시 데이터를 자동으로 채웠습니다."
+                bio: "안녕하세요. React Hook Form 예시 데이터를 자동으로 채웠습니다.",
               })
             }
           >
@@ -164,6 +174,16 @@ const BasicForm: React.FC = () => {
             <code>reset</code> 함수로 폼 초기화
           </li>
         </ul>
+        
+        <h3>코드 예시</h3>
+        {basicFormExamples.map((example, index) => (
+          <CodeExample
+            key={index}
+            title={example.title}
+            description={example.description}
+            code={example.code}
+          />
+        ))}
       </div>
     </div>
   );

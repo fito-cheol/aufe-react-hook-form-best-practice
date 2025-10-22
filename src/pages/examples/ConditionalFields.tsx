@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm, useWatch } from "react-hook-form";
+import CodeExample from "../../components/CodeExample";
+import { conditionalFieldsExamples } from "../../data/codeExamples";
 
 interface FormData {
   userType: "individual" | "company" | "";
@@ -464,6 +466,16 @@ const ConditionalFields: React.FC = () => {
             체크박스 상태에 따른 추가 필드 표시
           </li>
         </ul>
+        
+        <h3>코드 예시</h3>
+        {conditionalFieldsExamples.map((example, index) => (
+          <CodeExample
+            key={index}
+            title={example.title}
+            description={example.description}
+            code={example.code}
+          />
+        ))}
       </div>
     </div>
   );

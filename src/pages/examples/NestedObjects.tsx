@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import CodeExample from "../../components/CodeExample";
+import { nestedObjectsExamples } from "../../data/codeExamples";
 
 interface FormData {
   // 기본 정보
@@ -1013,6 +1015,16 @@ const NestedObjects: React.FC = () => {
           <li>조건부 필드 렌더링</li>
           <li>배열과 객체가 혼재된 복잡한 데이터 구조 처리</li>
         </ul>
+        
+        <h3>코드 예시</h3>
+        {nestedObjectsExamples.map((example, index) => (
+          <CodeExample
+            key={index}
+            title={example.title}
+            description={example.description}
+            code={example.code}
+          />
+        ))}
       </div>
     </div>
   );

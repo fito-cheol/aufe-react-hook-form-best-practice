@@ -2,6 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import CodeExample from "../../components/CodeExample";
+import { validationExamples } from "../../data/codeExamples";
 
 // Zod 스키마 정의
 const schema = z
@@ -83,7 +85,15 @@ const Validation: React.FC = () => {
       </p>
 
       <div className="form-container">
-        <div className="form-actions" style={{ justifyContent: "flex-end", paddingTop: 0, marginTop: 0, borderTop: "none" }}>
+        <div
+          className="form-actions"
+          style={{
+            justifyContent: "flex-end",
+            paddingTop: 0,
+            marginTop: 0,
+            borderTop: "none",
+          }}
+        >
           <button
             type="button"
             className="btn btn-secondary"
@@ -255,6 +265,16 @@ const Validation: React.FC = () => {
             <code>isSubmitting</code> 상태로 제출 중 UI 처리
           </li>
         </ul>
+        
+        <h3>코드 예시</h3>
+        {validationExamples.map((example, index) => (
+          <CodeExample
+            key={index}
+            title={example.title}
+            description={example.description}
+            code={example.code}
+          />
+        ))}
       </div>
     </div>
   );

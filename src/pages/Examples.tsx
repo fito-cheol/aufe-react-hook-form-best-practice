@@ -6,7 +6,8 @@ const Examples: React.FC = () => {
     {
       id: "basic-form",
       title: "기본 폼",
-      description: "React Hook Form의 기본적인 사용법을 보여주는 간단한 폼 예제",
+      description:
+        "React Hook Form의 기본적인 사용법을 보여주는 간단한 폼 예제",
       path: "/examples/basic-form",
     },
     {
@@ -60,7 +61,7 @@ const Examples: React.FC = () => {
         React Hook Form의 다양한 사용법과 Best Practice를 보여주는 예제들입니다.
         각 예제를 클릭하여 상세 내용을 확인해보세요.
       </p>
-      
+
       <div className="examples-grid">
         {examples.map((example) => (
           <div key={example.id} className="example-card">

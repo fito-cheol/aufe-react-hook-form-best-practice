@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm, useFieldArray } from "react-hook-form";
+import CodeExample from "../../components/CodeExample";
+import { arrayFieldsExamples } from "../../data/codeExamples";
 
 interface FormData {
   name: string;
@@ -161,7 +163,15 @@ const ArrayFields: React.FC = () => {
       </p>
 
       <div className="form-container">
-        <div className="form-actions" style={{ justifyContent: "flex-end", paddingTop: 0, marginTop: 0, borderTop: "none" }}>
+        <div
+          className="form-actions"
+          style={{
+            justifyContent: "flex-end",
+            paddingTop: 0,
+            marginTop: 0,
+            borderTop: "none",
+          }}
+        >
           <button
             type="button"
             className="btn btn-secondary"
@@ -170,23 +180,63 @@ const ArrayFields: React.FC = () => {
                 name: "홍길동",
                 email: "hong@example.com",
                 addresses: [
-                  { id: "1", type: "home", street: "서울시 중구 세종대로 110", city: "서울", zipCode: "04524", country: "대한민국", isPrimary: true },
-                  { id: "2", type: "work", street: "판교역로 235", city: "성남", zipCode: "13494", country: "대한민국", isPrimary: false }
+                  {
+                    id: "1",
+                    type: "home",
+                    street: "서울시 중구 세종대로 110",
+                    city: "서울",
+                    zipCode: "04524",
+                    country: "대한민국",
+                    isPrimary: true,
+                  },
+                  {
+                    id: "2",
+                    type: "work",
+                    street: "판교역로 235",
+                    city: "성남",
+                    zipCode: "13494",
+                    country: "대한민국",
+                    isPrimary: false,
+                  },
                 ],
                 phoneNumbers: [
-                  { id: "1", type: "mobile", number: "010-1234-5678", isPrimary: true },
-                  { id: "2", type: "work", number: "010-9876-5432", isPrimary: false }
+                  {
+                    id: "1",
+                    type: "mobile",
+                    number: "010-1234-5678",
+                    isPrimary: true,
+                  },
+                  {
+                    id: "2",
+                    type: "work",
+                    number: "010-9876-5432",
+                    isPrimary: false,
+                  },
                 ],
                 emergencyContacts: [
-                  { id: "1", name: "김영희", relationship: "배우자", phone: "010-2222-3333", email: "spouse@example.com" }
+                  {
+                    id: "1",
+                    name: "김영희",
+                    relationship: "배우자",
+                    phone: "010-2222-3333",
+                    email: "spouse@example.com",
+                  },
                 ],
                 workExperience: [
-                  { id: "1", company: "AUFE", position: "Frontend Engineer", startDate: "2021-01-01", endDate: "", isCurrent: true, description: "React, TypeScript 기반 UI 개발" }
+                  {
+                    id: "1",
+                    company: "AUFE",
+                    position: "Frontend Engineer",
+                    startDate: "2021-01-01",
+                    endDate: "",
+                    isCurrent: true,
+                    description: "React, TypeScript 기반 UI 개발",
+                  },
                 ],
                 skills: [
                   { id: "1", name: "React", level: 4, category: "frontend" },
-                  { id: "2", name: "Node.js", level: 3, category: "backend" }
-                ]
+                  { id: "2", name: "Node.js", level: 3, category: "backend" },
+                ],
               })
             }
           >
@@ -813,6 +863,16 @@ const ArrayFields: React.FC = () => {
           <li>배열 내 필드별 유효성 검사</li>
           <li>배열 순서 변경 및 삭제 기능</li>
         </ul>
+        
+        <h3>코드 예시</h3>
+        {arrayFieldsExamples.map((example, index) => (
+          <CodeExample
+            key={index}
+            title={example.title}
+            description={example.description}
+            code={example.code}
+          />
+        ))}
       </div>
     </div>
   );
