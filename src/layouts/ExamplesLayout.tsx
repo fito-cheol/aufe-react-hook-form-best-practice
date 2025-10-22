@@ -33,5 +33,3 @@ const ExamplesLayout: React.FC = () => {
 };
 
 export default ExamplesLayout;
-
-

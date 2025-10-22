@@ -14,5 +14,3 @@ export const examplesNavItems: ExampleNavItem[] = [
   { label: "Array Fields", to: "/examples/array-fields" },
   { label: "Nested Objects", to: "/examples/nested-objects" },
 ];
-
-

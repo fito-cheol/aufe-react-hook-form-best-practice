@@ -40,7 +40,10 @@ function App() {
               <Route path="dynamic-fields" element={<DynamicFields />} />
               <Route path="file-upload" element={<FileUpload />} />
               <Route path="custom-components" element={<CustomComponents />} />
-              <Route path="conditional-fields" element={<ConditionalFields />} />
+              <Route
+                path="conditional-fields"
+                element={<ConditionalFields />}
+              />
               <Route path="array-fields" element={<ArrayFields />} />
               <Route path="nested-objects" element={<NestedObjects />} />
             </Route>
