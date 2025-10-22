@@ -1015,7 +1015,7 @@ const NestedObjects: React.FC = () => {
           <li>조건부 필드 렌더링</li>
           <li>배열과 객체가 혼재된 복잡한 데이터 구조 처리</li>
         </ul>
-        
+
         <h3>코드 예시</h3>
         {nestedObjectsExamples.map((example, index) => (
           <CodeExample

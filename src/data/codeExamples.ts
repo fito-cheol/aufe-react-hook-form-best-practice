@@ -13,7 +13,7 @@ return (
     <input {...register("firstName", { required: true })} />
     {errors.firstName && <span>이름을 입력해주세요</span>}
   </form>
-);`
+);`,
   },
   {
     title: "register 함수로 필드 등록",
@@ -28,11 +28,12 @@ return (
     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$/i,
     message: "올바른 이메일 형식이 아닙니다"
   }
-})} />`
+})} />`,
   },
   {
     title: "handleSubmit으로 폼 제출 처리",
-    description: "폼 제출 시 유효성 검사와 데이터 처리를 위한 handleSubmit 사용법",
+    description:
+      "폼 제출 시 유효성 검사와 데이터 처리를 위한 handleSubmit 사용법",
     code: `const onSubmit = (data) => {
   console.log("폼 데이터:", data);
   // API 호출 또는 데이터 처리
@@ -43,8 +44,8 @@ return (
     {/* 폼 필드들 */}
     <button type="submit">제출</button>
   </form>
-);`
-  }
+);`,
+  },
 ];
 
 export const validationExamples = [
@@ -57,7 +58,7 @@ const schema = z.object({
   name: z.string().min(1, "이름을 입력해주세요"),
   email: z.string().email("올바른 이메일 형식이 아닙니다"),
   age: z.number().min(18, "18세 이상이어야 합니다")
-});`
+});`,
   },
   {
     title: "zodResolver 연동",
@@ -67,7 +68,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 const { register, handleSubmit } = useForm({
   resolver: zodResolver(schema),
-});`
+});`,
   },
   {
     title: "커스텀 유효성 검사",
@@ -78,8 +79,8 @@ const { register, handleSubmit } = useForm({
 }).refine((data) => data.password === data.confirmPassword, {
   message: "비밀번호가 일치하지 않습니다",
   path: ["confirmPassword"]
-});`
-  }
+});`,
+  },
 ];
 
 export const dynamicFieldsExamples = [
@@ -95,7 +96,7 @@ const { control, register } = useForm({
 const { fields, append, remove } = useFieldArray({ 
   control, 
   name: "items" 
-});`
+});`,
   },
   {
     title: "동적 필드 렌더링",
@@ -107,7 +108,7 @@ const { fields, append, remove } = useFieldArray({
       삭제
     </button>
   </div>
-))}`
+))}`,
   },
   {
     title: "필드 추가/제거",
@@ -120,8 +121,8 @@ const addItem = () => {
 // 필드 제거
 const removeItem = (index) => {
   remove(index);
-};`
-  }
+};`,
+  },
 ];
 
 export const customComponentsExamples = [
@@ -136,7 +137,7 @@ export const customComponentsExamples = [
   render={({ field }) => (
     <CustomInput {...field} />
   )}
-/>`
+/>`,
   },
   {
     title: "커스텀 컴포넌트 구현",
@@ -148,8 +149,8 @@ export const customComponentsExamples = [
     onBlur={onBlur}
     name={name}
   />
-);`
-  }
+);`,
+  },
 ];
 
 export const conditionalFieldsExamples = [
@@ -169,7 +170,7 @@ return (
       <input {...register("conditionalField")} />
     )}
   </div>
-);`
+);`,
   },
   {
     title: "조건부 유효성 검사",
@@ -185,8 +186,8 @@ return (
 }, {
   message: "전화번호를 입력해주세요",
   path: ["phone"]
-});`
-  }
+});`,
+  },
 ];
 
 export const arrayFieldsExamples = [
@@ -208,7 +209,7 @@ const addAddress = () => {
     country: "",
     isPrimary: false
   });
-};`
+};`,
   },
   {
     title: "배열 필드 순서 변경",
@@ -217,7 +218,7 @@ const addAddress = () => {
 <button onClick={() => move(index, index - 1)}>↑</button>
 
 // 아래로 이동  
-<button onClick={() => move(index, index + 1)}>↓</button>`
+<button onClick={() => move(index, index + 1)}>↓</button>`,
   },
   {
     title: "배열 내 유효성 검사",
@@ -233,8 +234,8 @@ const addAddress = () => {
       <span>{errors.addresses[index].street.message}</span>
     )}
   </div>
-))}`
-  }
+))}`,
+  },
 ];
 
 export const nestedObjectsExamples = [
@@ -255,7 +256,7 @@ export const nestedObjectsExamples = [
     newsletter: boolean;
     notifications: boolean;
   };
-}`
+}`,
   },
   {
     title: "점 표기법으로 중첩 필드 접근",
@@ -268,7 +269,7 @@ export const nestedObjectsExamples = [
 // 중첩 필드 에러 처리
 {errors.personalInfo?.name && (
   <span>{errors.personalInfo.name.message}</span>
-)}`
+)}`,
   },
   {
     title: "중첩 객체 유효성 검사",
@@ -282,6 +283,6 @@ export const nestedObjectsExamples = [
     street: z.string().min(1, "도로명 주소를 입력해주세요"),
     city: z.string().min(1, "도시를 입력해주세요")
   })
-});`
-  }
+});`,
+  },
 ];

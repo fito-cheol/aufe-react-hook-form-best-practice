@@ -265,7 +265,7 @@ const Validation: React.FC = () => {
             <code>isSubmitting</code> 상태로 제출 중 UI 처리
           </li>
         </ul>
-        
+
         <h3>코드 예시</h3>
         {validationExamples.map((example, index) => (
           <CodeExample

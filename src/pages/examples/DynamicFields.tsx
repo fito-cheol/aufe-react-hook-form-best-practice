@@ -290,7 +290,7 @@ const DynamicFields: React.FC = () => {
           </li>
           <li>중첩된 유효성 검사와 에러 처리</li>
         </ul>
-        
+
         <h3>코드 예시</h3>
         {dynamicFieldsExamples.map((example, index) => (
           <CodeExample

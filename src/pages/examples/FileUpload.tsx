@@ -315,7 +315,7 @@ const FileUpload: React.FC = () => {
             <code>watch</code>로 실시간 파일 선택 상태 확인
           </li>
         </ul>
-        
+
         <h3>코드 예시</h3>
         <CodeExample
           title="파일 업로드 기본 사용법"

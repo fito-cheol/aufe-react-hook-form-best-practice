@@ -8,18 +8,18 @@ interface FormData {
   name: string;
   email: string;
   phone: string;
-  
+
   // 개인 사용자 필드
   age: number;
   gender: "male" | "female" | "";
   occupation: string;
-  
+
   // 기업 사용자 필드
   companyName: string;
   businessNumber: string;
   industry: string;
   companySize: "small" | "medium" | "large" | "";
-  
+
   // 공통 선택 필드
   newsletter: boolean;
   notifications: {
@@ -27,7 +27,7 @@ interface FormData {
     sms: boolean;
     push: boolean;
   };
-  
+
   // 추가 정보 (조건부)
   additionalInfo: string;
   hasExperience: boolean;
@@ -100,24 +100,37 @@ const ConditionalFields: React.FC = () => {
   ];
 
   const skillOptions = [
-    "JavaScript", "TypeScript", "React", "Vue", "Angular",
-    "Node.js", "Python", "Java", "C#", "Go", "Rust",
-    "HTML", "CSS", "SQL", "MongoDB", "PostgreSQL",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Vue",
+    "Angular",
+    "Node.js",
+    "Python",
+    "Java",
+    "C#",
+    "Go",
+    "Rust",
+    "HTML",
+    "CSS",
+    "SQL",
+    "MongoDB",
+    "PostgreSQL",
   ];
 
   return (
     <div className="page">
       <h1>조건부 필드 예제</h1>
       <p className="page-description">
-        <code>useWatch</code>를 사용하여 조건에 따라 필드를 표시하거나 숨기는 예제입니다.
-        사용자 타입, 경험 여부 등에 따라 다른 필드들이 나타납니다.
+        <code>useWatch</code>를 사용하여 조건에 따라 필드를 표시하거나 숨기는
+        예제입니다. 사용자 타입, 경험 여부 등에 따라 다른 필드들이 나타납니다.
       </p>
 
       <div className="form-container">
         <form onSubmit={handleSubmit(onSubmit)} className="form">
           <div className="form-section">
             <h3>사용자 타입</h3>
-            
+
             <div className="form-group">
               <label>사용자 타입</label>
               <div className="radio-group">
@@ -125,7 +138,9 @@ const ConditionalFields: React.FC = () => {
                   <input
                     type="radio"
                     value="individual"
-                    {...register("userType", { required: "사용자 타입을 선택해주세요" })}
+                    {...register("userType", {
+                      required: "사용자 타입을 선택해주세요",
+                    })}
                   />
                   <span>개인 사용자</span>
                 </label>
@@ -133,7 +148,9 @@ const ConditionalFields: React.FC = () => {
                   <input
                     type="radio"
                     value="company"
-                    {...register("userType", { required: "사용자 타입을 선택해주세요" })}
+                    {...register("userType", {
+                      required: "사용자 타입을 선택해주세요",
+                    })}
                   />
                   <span>기업 사용자</span>
                 </label>
@@ -146,7 +163,7 @@ const ConditionalFields: React.FC = () => {
 
           <div className="form-section">
             <h3>기본 정보</h3>
-            
+
             <div className="form-group">
               <label htmlFor="name">이름</label>
               <input
@@ -192,7 +209,7 @@ const ConditionalFields: React.FC = () => {
           {userType === "individual" && (
             <div className="form-section conditional-section">
               <h3>개인 정보</h3>
-              
+
               <div className="form-group">
                 <label htmlFor="age">나이</label>
                 <input
@@ -200,8 +217,14 @@ const ConditionalFields: React.FC = () => {
                   type="number"
                   {...register("age", {
                     required: "나이를 입력해주세요",
-                    min: { value: 18, message: "나이는 18세 이상이어야 합니다" },
-                    max: { value: 100, message: "나이는 100세 이하여야 합니다" },
+                    min: {
+                      value: 18,
+                      message: "나이는 18세 이상이어야 합니다",
+                    },
+                    max: {
+                      value: 100,
+                      message: "나이는 100세 이하여야 합니다",
+                    },
                   })}
                   className={errors.age ? "error" : ""}
                   min="18"
@@ -219,7 +242,9 @@ const ConditionalFields: React.FC = () => {
                     <input
                       type="radio"
                       value="male"
-                      {...register("gender", { required: "성별을 선택해주세요" })}
+                      {...register("gender", {
+                        required: "성별을 선택해주세요",
+                      })}
                     />
                     <span>남성</span>
                   </label>
@@ -227,7 +252,9 @@ const ConditionalFields: React.FC = () => {
                     <input
                       type="radio"
                       value="female"
-                      {...register("gender", { required: "성별을 선택해주세요" })}
+                      {...register("gender", {
+                        required: "성별을 선택해주세요",
+                      })}
                     />
                     <span>여성</span>
                   </label>
@@ -242,11 +269,15 @@ const ConditionalFields: React.FC = () => {
                 <input
                   id="occupation"
                   type="text"
-                  {...register("occupation", { required: "직업을 입력해주세요" })}
+                  {...register("occupation", {
+                    required: "직업을 입력해주세요",
+                  })}
                   className={errors.occupation ? "error" : ""}
                 />
                 {errors.occupation && (
-                  <span className="error-message">{errors.occupation.message}</span>
+                  <span className="error-message">
+                    {errors.occupation.message}
+                  </span>
                 )}
               </div>
             </div>
@@ -256,17 +287,21 @@ const ConditionalFields: React.FC = () => {
           {userType === "company" && (
             <div className="form-section conditional-section">
               <h3>기업 정보</h3>
-              
+
               <div className="form-group">
                 <label htmlFor="companyName">회사명</label>
                 <input
                   id="companyName"
                   type="text"
-                  {...register("companyName", { required: "회사명을 입력해주세요" })}
+                  {...register("companyName", {
+                    required: "회사명을 입력해주세요",
+                  })}
                   className={errors.companyName ? "error" : ""}
                 />
                 {errors.companyName && (
-                  <span className="error-message">{errors.companyName.message}</span>
+                  <span className="error-message">
+                    {errors.companyName.message}
+                  </span>
                 )}
               </div>
 
@@ -279,14 +314,17 @@ const ConditionalFields: React.FC = () => {
                     required: "사업자등록번호를 입력해주세요",
                     pattern: {
                       value: /^\d{3}-\d{2}-\d{5}$/,
-                      message: "올바른 사업자등록번호 형식을 입력해주세요 (000-00-00000)",
+                      message:
+                        "올바른 사업자등록번호 형식을 입력해주세요 (000-00-00000)",
                     },
                   })}
                   className={errors.businessNumber ? "error" : ""}
                   placeholder="000-00-00000"
                 />
                 {errors.businessNumber && (
-                  <span className="error-message">{errors.businessNumber.message}</span>
+                  <span className="error-message">
+                    {errors.businessNumber.message}
+                  </span>
                 )}
               </div>
 
@@ -305,7 +343,9 @@ const ConditionalFields: React.FC = () => {
                   ))}
                 </select>
                 {errors.industry && (
-                  <span className="error-message">{errors.industry.message}</span>
+                  <span className="error-message">
+                    {errors.industry.message}
+                  </span>
                 )}
               </div>
 
@@ -316,7 +356,9 @@ const ConditionalFields: React.FC = () => {
                     <input
                       type="radio"
                       value="small"
-                      {...register("companySize", { required: "회사 규모를 선택해주세요" })}
+                      {...register("companySize", {
+                        required: "회사 규모를 선택해주세요",
+                      })}
                     />
                     <span>소규모 (1-50명)</span>
                   </label>
@@ -324,7 +366,9 @@ const ConditionalFields: React.FC = () => {
                     <input
                       type="radio"
                       value="medium"
-                      {...register("companySize", { required: "회사 규모를 선택해주세요" })}
+                      {...register("companySize", {
+                        required: "회사 규모를 선택해주세요",
+                      })}
                     />
                     <span>중규모 (51-500명)</span>
                   </label>
@@ -332,13 +376,17 @@ const ConditionalFields: React.FC = () => {
                     <input
                       type="radio"
                       value="large"
-                      {...register("companySize", { required: "회사 규모를 선택해주세요" })}
+                      {...register("companySize", {
+                        required: "회사 규모를 선택해주세요",
+                      })}
                     />
                     <span>대규모 (500명 이상)</span>
                   </label>
                 </div>
                 {errors.companySize && (
-                  <span className="error-message">{errors.companySize.message}</span>
+                  <span className="error-message">
+                    {errors.companySize.message}
+                  </span>
                 )}
               </div>
             </div>
@@ -346,13 +394,10 @@ const ConditionalFields: React.FC = () => {
 
           <div className="form-section">
             <h3>알림 설정</h3>
-            
+
             <div className="form-group">
               <label className="checkbox-label">
-                <input
-                  type="checkbox"
-                  {...register("newsletter")}
-                />
+                <input type="checkbox" {...register("newsletter")} />
                 <span>뉴스레터 구독</span>
               </label>
             </div>
@@ -369,10 +414,7 @@ const ConditionalFields: React.FC = () => {
                     <span>이메일</span>
                   </label>
                   <label className="checkbox-label">
-                    <input
-                      type="checkbox"
-                      {...register("notifications.sms")}
-                    />
+                    <input type="checkbox" {...register("notifications.sms")} />
                     <span>SMS</span>
                   </label>
                   <label className="checkbox-label">
@@ -389,13 +431,10 @@ const ConditionalFields: React.FC = () => {
 
           <div className="form-section">
             <h3>추가 정보</h3>
-            
+
             <div className="form-group">
               <label className="checkbox-label">
-                <input
-                  type="checkbox"
-                  {...register("hasExperience")}
-                />
+                <input type="checkbox" {...register("hasExperience")} />
                 <span>관련 경험이 있습니다</span>
               </label>
             </div>
@@ -416,7 +455,9 @@ const ConditionalFields: React.FC = () => {
                   max="50"
                 />
                 {errors.experienceYears && (
-                  <span className="error-message">{errors.experienceYears.message}</span>
+                  <span className="error-message">
+                    {errors.experienceYears.message}
+                  </span>
                 )}
               </div>
             )}
@@ -453,20 +494,12 @@ const ConditionalFields: React.FC = () => {
           <li>
             <code>useWatch</code>로 특정 필드 값 실시간 감시
           </li>
-          <li>
-            조건부 렌더링으로 필드 표시/숨김
-          </li>
-          <li>
-            중첩된 조건부 필드 처리
-          </li>
-          <li>
-            사용자 타입에 따른 다른 폼 구조
-          </li>
-          <li>
-            체크박스 상태에 따른 추가 필드 표시
-          </li>
+          <li>조건부 렌더링으로 필드 표시/숨김</li>
+          <li>중첩된 조건부 필드 처리</li>
+          <li>사용자 타입에 따른 다른 폼 구조</li>
+          <li>체크박스 상태에 따른 추가 필드 표시</li>
         </ul>
-        
+
         <h3>코드 예시</h3>
         {conditionalFieldsExamples.map((example, index) => (
           <CodeExample

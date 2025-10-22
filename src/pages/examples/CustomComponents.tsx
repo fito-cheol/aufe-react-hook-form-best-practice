@@ -414,7 +414,7 @@ const CustomComponents: React.FC = () => {
           <li>재사용 가능한 커스텀 컴포넌트 설계</li>
           <li>복잡한 상태 로직을 컴포넌트 내부에서 처리</li>
         </ul>
-        
+
         <h3>코드 예시</h3>
         {customComponentsExamples.map((example, index) => (
           <CodeExample

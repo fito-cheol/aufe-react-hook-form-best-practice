@@ -174,7 +174,7 @@ const BasicForm: React.FC = () => {
             <code>reset</code> 함수로 폼 초기화
           </li>
         </ul>
-        
+
         <h3>코드 예시</h3>
         {basicFormExamples.map((example, index) => (
           <CodeExample

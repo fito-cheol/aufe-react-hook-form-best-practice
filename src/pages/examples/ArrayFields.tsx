@@ -863,7 +863,7 @@ const ArrayFields: React.FC = () => {
           <li>배열 내 필드별 유효성 검사</li>
           <li>배열 순서 변경 및 삭제 기능</li>
         </ul>
-        
+
         <h3>코드 예시</h3>
         {arrayFieldsExamples.map((example, index) => (
           <CodeExample
