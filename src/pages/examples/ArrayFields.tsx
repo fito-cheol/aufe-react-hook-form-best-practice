@@ -4,7 +4,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 interface FormData {
   name: string;
   email: string;
-  
+
   // 동적 배열 필드들
   addresses: Array<{
     id: string;
@@ -15,14 +15,14 @@ interface FormData {
     country: string;
     isPrimary: boolean;
   }>;
-  
+
   phoneNumbers: Array<{
     id: string;
     type: "mobile" | "home" | "work";
     number: string;
     isPrimary: boolean;
   }>;
-  
+
   emergencyContacts: Array<{
     id: string;
     name: string;
@@ -30,7 +30,7 @@ interface FormData {
     phone: string;
     email: string;
   }>;
-  
+
   workExperience: Array<{
     id: string;
     company: string;
@@ -40,7 +40,7 @@ interface FormData {
     isCurrent: boolean;
     description: string;
   }>;
-  
+
   skills: Array<{
     id: string;
     name: string;
@@ -61,10 +61,32 @@ const ArrayFields: React.FC = () => {
     defaultValues: {
       name: "",
       email: "",
-      addresses: [{ id: "1", type: "home", street: "", city: "", zipCode: "", country: "", isPrimary: true }],
+      addresses: [
+        {
+          id: "1",
+          type: "home",
+          street: "",
+          city: "",
+          zipCode: "",
+          country: "",
+          isPrimary: true,
+        },
+      ],
       phoneNumbers: [{ id: "1", type: "mobile", number: "", isPrimary: true }],
-      emergencyContacts: [{ id: "1", name: "", relationship: "", phone: "", email: "" }],
-      workExperience: [{ id: "1", company: "", position: "", startDate: "", endDate: "", isCurrent: false, description: "" }],
+      emergencyContacts: [
+        { id: "1", name: "", relationship: "", phone: "", email: "" },
+      ],
+      workExperience: [
+        {
+          id: "1",
+          company: "",
+          position: "",
+          startDate: "",
+          endDate: "",
+          isCurrent: false,
+          description: "",
+        },
+      ],
       skills: [{ id: "1", name: "", level: 1, category: "" }],
     },
   });
@@ -133,15 +155,48 @@ const ArrayFields: React.FC = () => {
     <div className="page">
       <h1>배열 필드 예제</h1>
       <p className="page-description">
-        <code>useFieldArray</code>를 사용하여 동적 배열 필드를 관리하는 예제입니다.
-        주소, 전화번호, 비상연락처, 경력, 기술 등 다양한 배열 필드를 다룹니다.
+        <code>useFieldArray</code>를 사용하여 동적 배열 필드를 관리하는
+        예제입니다. 주소, 전화번호, 비상연락처, 경력, 기술 등 다양한 배열 필드를
+        다룹니다.
       </p>
 
       <div className="form-container">
+        <div className="form-actions" style={{ justifyContent: "flex-end", paddingTop: 0, marginTop: 0, borderTop: "none" }}>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() =>
+              reset({
+                name: "홍길동",
+                email: "hong@example.com",
+                addresses: [
+                  { id: "1", type: "home", street: "서울시 중구 세종대로 110", city: "서울", zipCode: "04524", country: "대한민국", isPrimary: true },
+                  { id: "2", type: "work", street: "판교역로 235", city: "성남", zipCode: "13494", country: "대한민국", isPrimary: false }
+                ],
+                phoneNumbers: [
+                  { id: "1", type: "mobile", number: "010-1234-5678", isPrimary: true },
+                  { id: "2", type: "work", number: "010-9876-5432", isPrimary: false }
+                ],
+                emergencyContacts: [
+                  { id: "1", name: "김영희", relationship: "배우자", phone: "010-2222-3333", email: "spouse@example.com" }
+                ],
+                workExperience: [
+                  { id: "1", company: "AUFE", position: "Frontend Engineer", startDate: "2021-01-01", endDate: "", isCurrent: true, description: "React, TypeScript 기반 UI 개발" }
+                ],
+                skills: [
+                  { id: "1", name: "React", level: 4, category: "frontend" },
+                  { id: "2", name: "Node.js", level: 3, category: "backend" }
+                ]
+              })
+            }
+          >
+            예시 채우기
+          </button>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)} className="form">
           <div className="form-section">
             <h3>기본 정보</h3>
-            
+
             <div className="form-group">
               <label htmlFor="name">이름</label>
               <input
@@ -174,13 +229,23 @@ const ArrayFields: React.FC = () => {
               <h3>주소</h3>
               <button
                 type="button"
-                onClick={() => appendAddress({ id: Date.now().toString(), type: "home", street: "", city: "", zipCode: "", country: "", isPrimary: false })}
+                onClick={() =>
+                  appendAddress({
+                    id: Date.now().toString(),
+                    type: "home",
+                    street: "",
+                    city: "",
+                    zipCode: "",
+                    country: "",
+                    isPrimary: false,
+                  })
+                }
                 className="btn btn-add"
               >
                 주소 추가
               </button>
             </div>
-            
+
             {addressFields.map((field, index) => (
               <div key={field.id} className="array-field-group">
                 <div className="array-field-header">
@@ -215,7 +280,7 @@ const ArrayFields: React.FC = () => {
                     )}
                   </div>
                 </div>
-                
+
                 <div className="form-row">
                   <div className="form-group">
                     <label>주소 타입</label>
@@ -225,7 +290,7 @@ const ArrayFields: React.FC = () => {
                       <option value="other">기타</option>
                     </select>
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="checkbox-label">
                       <input
@@ -236,7 +301,7 @@ const ArrayFields: React.FC = () => {
                     </label>
                   </div>
                 </div>
-                
+
                 <div className="form-group">
                   <label>도로명 주소</label>
                   <input
@@ -251,7 +316,7 @@ const ArrayFields: React.FC = () => {
                     </span>
                   )}
                 </div>
-                
+
                 <div className="form-row">
                   <div className="form-group">
                     <label>도시</label>
@@ -267,14 +332,16 @@ const ArrayFields: React.FC = () => {
                       </span>
                     )}
                   </div>
-                  
+
                   <div className="form-group">
                     <label>우편번호</label>
                     <input
                       {...register(`addresses.${index}.zipCode` as const, {
                         required: "우편번호를 입력해주세요",
                       })}
-                      className={errors.addresses?.[index]?.zipCode ? "error" : ""}
+                      className={
+                        errors.addresses?.[index]?.zipCode ? "error" : ""
+                      }
                     />
                     {errors.addresses?.[index]?.zipCode && (
                       <span className="error-message">
@@ -282,14 +349,16 @@ const ArrayFields: React.FC = () => {
                       </span>
                     )}
                   </div>
-                  
+
                   <div className="form-group">
                     <label>국가</label>
                     <input
                       {...register(`addresses.${index}.country` as const, {
                         required: "국가를 입력해주세요",
                       })}
-                      className={errors.addresses?.[index]?.country ? "error" : ""}
+                      className={
+                        errors.addresses?.[index]?.country ? "error" : ""
+                      }
                     />
                     {errors.addresses?.[index]?.country && (
                       <span className="error-message">
@@ -307,13 +376,20 @@ const ArrayFields: React.FC = () => {
               <h3>전화번호</h3>
               <button
                 type="button"
-                onClick={() => appendPhone({ id: Date.now().toString(), type: "mobile", number: "", isPrimary: false })}
+                onClick={() =>
+                  appendPhone({
+                    id: Date.now().toString(),
+                    type: "mobile",
+                    number: "",
+                    isPrimary: false,
+                  })
+                }
                 className="btn btn-add"
               >
                 전화번호 추가
               </button>
             </div>
-            
+
             {phoneFields.map((field, index) => (
               <div key={field.id} className="array-field-group">
                 <div className="array-field-header">
@@ -328,28 +404,32 @@ const ArrayFields: React.FC = () => {
                     </button>
                   )}
                 </div>
-                
+
                 <div className="form-row">
                   <div className="form-group">
                     <label>전화번호 타입</label>
-                    <select {...register(`phoneNumbers.${index}.type` as const)}>
+                    <select
+                      {...register(`phoneNumbers.${index}.type` as const)}
+                    >
                       <option value="mobile">휴대폰</option>
                       <option value="home">집</option>
                       <option value="work">직장</option>
                     </select>
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="checkbox-label">
                       <input
                         type="checkbox"
-                        {...register(`phoneNumbers.${index}.isPrimary` as const)}
+                        {...register(
+                          `phoneNumbers.${index}.isPrimary` as const
+                        )}
                       />
                       <span>기본 번호</span>
                     </label>
                   </div>
                 </div>
-                
+
                 <div className="form-group">
                   <label>전화번호</label>
                   <input
@@ -357,10 +437,13 @@ const ArrayFields: React.FC = () => {
                       required: "전화번호를 입력해주세요",
                       pattern: {
                         value: /^010-\d{4}-\d{4}$/,
-                        message: "올바른 전화번호 형식을 입력해주세요 (010-0000-0000)",
+                        message:
+                          "올바른 전화번호 형식을 입력해주세요 (010-0000-0000)",
                       },
                     })}
-                    className={errors.phoneNumbers?.[index]?.number ? "error" : ""}
+                    className={
+                      errors.phoneNumbers?.[index]?.number ? "error" : ""
+                    }
                     placeholder="010-0000-0000"
                   />
                   {errors.phoneNumbers?.[index]?.number && (
@@ -378,13 +461,21 @@ const ArrayFields: React.FC = () => {
               <h3>비상연락처</h3>
               <button
                 type="button"
-                onClick={() => appendContact({ id: Date.now().toString(), name: "", relationship: "", phone: "", email: "" })}
+                onClick={() =>
+                  appendContact({
+                    id: Date.now().toString(),
+                    name: "",
+                    relationship: "",
+                    phone: "",
+                    email: "",
+                  })
+                }
                 className="btn btn-add"
               >
                 연락처 추가
               </button>
             </div>
-            
+
             {contactFields.map((field, index) => (
               <div key={field.id} className="array-field-group">
                 <div className="array-field-header">
@@ -399,7 +490,7 @@ const ArrayFields: React.FC = () => {
                     </button>
                   )}
                 </div>
-                
+
                 <div className="form-row">
                   <div className="form-group">
                     <label>이름</label>
@@ -407,7 +498,9 @@ const ArrayFields: React.FC = () => {
                       {...register(`emergencyContacts.${index}.name` as const, {
                         required: "이름을 입력해주세요",
                       })}
-                      className={errors.emergencyContacts?.[index]?.name ? "error" : ""}
+                      className={
+                        errors.emergencyContacts?.[index]?.name ? "error" : ""
+                      }
                     />
                     {errors.emergencyContacts?.[index]?.name && (
                       <span className="error-message">
@@ -415,14 +508,21 @@ const ArrayFields: React.FC = () => {
                       </span>
                     )}
                   </div>
-                  
+
                   <div className="form-group">
                     <label>관계</label>
                     <input
-                      {...register(`emergencyContacts.${index}.relationship` as const, {
-                        required: "관계를 입력해주세요",
-                      })}
-                      className={errors.emergencyContacts?.[index]?.relationship ? "error" : ""}
+                      {...register(
+                        `emergencyContacts.${index}.relationship` as const,
+                        {
+                          required: "관계를 입력해주세요",
+                        }
+                      )}
+                      className={
+                        errors.emergencyContacts?.[index]?.relationship
+                          ? "error"
+                          : ""
+                      }
                     />
                     {errors.emergencyContacts?.[index]?.relationship && (
                       <span className="error-message">
@@ -431,15 +531,20 @@ const ArrayFields: React.FC = () => {
                     )}
                   </div>
                 </div>
-                
+
                 <div className="form-row">
                   <div className="form-group">
                     <label>전화번호</label>
                     <input
-                      {...register(`emergencyContacts.${index}.phone` as const, {
-                        required: "전화번호를 입력해주세요",
-                      })}
-                      className={errors.emergencyContacts?.[index]?.phone ? "error" : ""}
+                      {...register(
+                        `emergencyContacts.${index}.phone` as const,
+                        {
+                          required: "전화번호를 입력해주세요",
+                        }
+                      )}
+                      className={
+                        errors.emergencyContacts?.[index]?.phone ? "error" : ""
+                      }
                     />
                     {errors.emergencyContacts?.[index]?.phone && (
                       <span className="error-message">
@@ -447,7 +552,7 @@ const ArrayFields: React.FC = () => {
                       </span>
                     )}
                   </div>
-                  
+
                   <div className="form-group">
                     <label>이메일</label>
                     <input
@@ -465,13 +570,23 @@ const ArrayFields: React.FC = () => {
               <h3>경력</h3>
               <button
                 type="button"
-                onClick={() => appendExperience({ id: Date.now().toString(), company: "", position: "", startDate: "", endDate: "", isCurrent: false, description: "" })}
+                onClick={() =>
+                  appendExperience({
+                    id: Date.now().toString(),
+                    company: "",
+                    position: "",
+                    startDate: "",
+                    endDate: "",
+                    isCurrent: false,
+                    description: "",
+                  })
+                }
                 className="btn btn-add"
               >
                 경력 추가
               </button>
             </div>
-            
+
             {experienceFields.map((field, index) => (
               <div key={field.id} className="array-field-group">
                 <div className="array-field-header">
@@ -486,7 +601,7 @@ const ArrayFields: React.FC = () => {
                     </button>
                   )}
                 </div>
-                
+
                 <div className="form-row">
                   <div className="form-group">
                     <label>회사명</label>
@@ -494,7 +609,9 @@ const ArrayFields: React.FC = () => {
                       {...register(`workExperience.${index}.company` as const, {
                         required: "회사명을 입력해주세요",
                       })}
-                      className={errors.workExperience?.[index]?.company ? "error" : ""}
+                      className={
+                        errors.workExperience?.[index]?.company ? "error" : ""
+                      }
                     />
                     {errors.workExperience?.[index]?.company && (
                       <span className="error-message">
@@ -502,14 +619,19 @@ const ArrayFields: React.FC = () => {
                       </span>
                     )}
                   </div>
-                  
+
                   <div className="form-group">
                     <label>직책</label>
                     <input
-                      {...register(`workExperience.${index}.position` as const, {
-                        required: "직책을 입력해주세요",
-                      })}
-                      className={errors.workExperience?.[index]?.position ? "error" : ""}
+                      {...register(
+                        `workExperience.${index}.position` as const,
+                        {
+                          required: "직책을 입력해주세요",
+                        }
+                      )}
+                      className={
+                        errors.workExperience?.[index]?.position ? "error" : ""
+                      }
                     />
                     {errors.workExperience?.[index]?.position && (
                       <span className="error-message">
@@ -518,16 +640,21 @@ const ArrayFields: React.FC = () => {
                     )}
                   </div>
                 </div>
-                
+
                 <div className="form-row">
                   <div className="form-group">
                     <label>시작일</label>
                     <input
                       type="date"
-                      {...register(`workExperience.${index}.startDate` as const, {
-                        required: "시작일을 입력해주세요",
-                      })}
-                      className={errors.workExperience?.[index]?.startDate ? "error" : ""}
+                      {...register(
+                        `workExperience.${index}.startDate` as const,
+                        {
+                          required: "시작일을 입력해주세요",
+                        }
+                      )}
+                      className={
+                        errors.workExperience?.[index]?.startDate ? "error" : ""
+                      }
                     />
                     {errors.workExperience?.[index]?.startDate && (
                       <span className="error-message">
@@ -535,31 +662,37 @@ const ArrayFields: React.FC = () => {
                       </span>
                     )}
                   </div>
-                  
+
                   <div className="form-group">
                     <label>종료일</label>
                     <input
                       type="date"
                       {...register(`workExperience.${index}.endDate` as const)}
-                      className={errors.workExperience?.[index]?.endDate ? "error" : ""}
+                      className={
+                        errors.workExperience?.[index]?.endDate ? "error" : ""
+                      }
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="checkbox-label">
                       <input
                         type="checkbox"
-                        {...register(`workExperience.${index}.isCurrent` as const)}
+                        {...register(
+                          `workExperience.${index}.isCurrent` as const
+                        )}
                       />
                       <span>현재 재직 중</span>
                     </label>
                   </div>
                 </div>
-                
+
                 <div className="form-group">
                   <label>업무 내용</label>
                   <textarea
-                    {...register(`workExperience.${index}.description` as const)}
+                    {...register(
+                      `workExperience.${index}.description` as const
+                    )}
                     rows={3}
                   />
                 </div>
@@ -572,13 +705,20 @@ const ArrayFields: React.FC = () => {
               <h3>기술</h3>
               <button
                 type="button"
-                onClick={() => appendSkill({ id: Date.now().toString(), name: "", level: 1, category: "" })}
+                onClick={() =>
+                  appendSkill({
+                    id: Date.now().toString(),
+                    name: "",
+                    level: 1,
+                    category: "",
+                  })
+                }
                 className="btn btn-add"
               >
                 기술 추가
               </button>
             </div>
-            
+
             {skillFields.map((field, index) => (
               <div key={field.id} className="array-field-group">
                 <div className="array-field-header">
@@ -593,7 +733,7 @@ const ArrayFields: React.FC = () => {
                     </button>
                   )}
                 </div>
-                
+
                 <div className="form-row">
                   <div className="form-group">
                     <label>기술명</label>
@@ -609,7 +749,7 @@ const ArrayFields: React.FC = () => {
                       </span>
                     )}
                   </div>
-                  
+
                   <div className="form-group">
                     <label>카테고리</label>
                     <select {...register(`skills.${index}.category` as const)}>
@@ -621,7 +761,7 @@ const ArrayFields: React.FC = () => {
                       ))}
                     </select>
                   </div>
-                  
+
                   <div className="form-group">
                     <label>숙련도 (1-5)</label>
                     <input
@@ -666,17 +806,12 @@ const ArrayFields: React.FC = () => {
             <code>useFieldArray</code>로 동적 배열 필드 관리
           </li>
           <li>
-            <code>append</code>, <code>remove</code>, <code>move</code> 함수 활용
+            <code>append</code>, <code>remove</code>, <code>move</code> 함수
+            활용
           </li>
-          <li>
-            복잡한 중첩 객체 배열 처리
-          </li>
-          <li>
-            배열 내 필드별 유효성 검사
-          </li>
-          <li>
-            배열 순서 변경 및 삭제 기능
-          </li>
+          <li>복잡한 중첩 객체 배열 처리</li>
+          <li>배열 내 필드별 유효성 검사</li>
+          <li>배열 순서 변경 및 삭제 기능</li>
         </ul>
       </div>
     </div>

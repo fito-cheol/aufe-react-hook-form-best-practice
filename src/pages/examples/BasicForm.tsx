@@ -32,6 +32,23 @@ const BasicForm: React.FC = () => {
       </p>
 
       <div className="form-container">
+        <div className="form-actions" style={{ justifyContent: "flex-end", paddingTop: 0, marginTop: 0, borderTop: "none" }}>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() =>
+              reset({
+                firstName: "철수",
+                lastName: "김",
+                email: "test@example.com",
+                age: 28,
+                bio: "안녕하세요. React Hook Form 예시 데이터를 자동으로 채웠습니다."
+              })
+            }
+          >
+            예시 채우기
+          </button>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)} className="form">
           <div className="form-group">
             <label htmlFor="firstName">이름</label>

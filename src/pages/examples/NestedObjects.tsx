@@ -10,7 +10,7 @@ interface FormData {
     dateOfBirth: string;
     gender: "male" | "female" | "other";
   };
-  
+
   // 주소 정보
   address: {
     street: string;
@@ -23,7 +23,7 @@ interface FormData {
       longitude: number;
     };
   };
-  
+
   // 직업 정보
   employment: {
     company: string;
@@ -42,7 +42,7 @@ interface FormData {
       paidTimeOff: number;
     };
   };
-  
+
   // 교육 정보
   education: {
     degree: string;
@@ -52,7 +52,7 @@ interface FormData {
     gpa: number;
     honors: string[];
   };
-  
+
   // 가족 정보
   family: {
     maritalStatus: "single" | "married" | "divorced" | "widowed";
@@ -66,7 +66,7 @@ interface FormData {
       relationship: string;
     }>;
   };
-  
+
   // 선호도
   preferences: {
     communication: {
@@ -200,13 +200,33 @@ const NestedObjects: React.FC = () => {
   ];
 
   const hobbies = [
-    "독서", "영화감상", "음악감상", "운동", "요리", "여행",
-    "게임", "사진촬영", "그림그리기", "악기연주", "춤", "기타"
+    "독서",
+    "영화감상",
+    "음악감상",
+    "운동",
+    "요리",
+    "여행",
+    "게임",
+    "사진촬영",
+    "그림그리기",
+    "악기연주",
+    "춤",
+    "기타",
   ];
 
   const interests = [
-    "기술", "과학", "예술", "스포츠", "정치", "경제",
-    "환경", "교육", "의료", "법률", "경영", "기타"
+    "기술",
+    "과학",
+    "예술",
+    "스포츠",
+    "정치",
+    "경제",
+    "환경",
+    "교육",
+    "의료",
+    "법률",
+    "경영",
+    "기타",
   ];
 
   return (
@@ -221,64 +241,80 @@ const NestedObjects: React.FC = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="form">
           <div className="form-section">
             <h3>개인 정보</h3>
-            
+
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="personalInfo.name">이름</label>
                 <input
                   id="personalInfo.name"
                   type="text"
-                  {...register("personalInfo.name", { required: "이름을 입력해주세요" })}
+                  {...register("personalInfo.name", {
+                    required: "이름을 입력해주세요",
+                  })}
                   className={errors.personalInfo?.name ? "error" : ""}
                 />
                 {errors.personalInfo?.name && (
-                  <span className="error-message">{errors.personalInfo.name.message}</span>
+                  <span className="error-message">
+                    {errors.personalInfo.name.message}
+                  </span>
                 )}
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="personalInfo.email">이메일</label>
                 <input
                   id="personalInfo.email"
                   type="email"
-                  {...register("personalInfo.email", { required: "이메일을 입력해주세요" })}
+                  {...register("personalInfo.email", {
+                    required: "이메일을 입력해주세요",
+                  })}
                   className={errors.personalInfo?.email ? "error" : ""}
                 />
                 {errors.personalInfo?.email && (
-                  <span className="error-message">{errors.personalInfo.email.message}</span>
+                  <span className="error-message">
+                    {errors.personalInfo.email.message}
+                  </span>
                 )}
               </div>
             </div>
-            
+
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="personalInfo.phone">전화번호</label>
                 <input
                   id="personalInfo.phone"
                   type="tel"
-                  {...register("personalInfo.phone", { required: "전화번호를 입력해주세요" })}
+                  {...register("personalInfo.phone", {
+                    required: "전화번호를 입력해주세요",
+                  })}
                   className={errors.personalInfo?.phone ? "error" : ""}
                   placeholder="010-0000-0000"
                 />
                 {errors.personalInfo?.phone && (
-                  <span className="error-message">{errors.personalInfo.phone.message}</span>
+                  <span className="error-message">
+                    {errors.personalInfo.phone.message}
+                  </span>
                 )}
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="personalInfo.dateOfBirth">생년월일</label>
                 <input
                   id="personalInfo.dateOfBirth"
                   type="date"
-                  {...register("personalInfo.dateOfBirth", { required: "생년월일을 입력해주세요" })}
+                  {...register("personalInfo.dateOfBirth", {
+                    required: "생년월일을 입력해주세요",
+                  })}
                   className={errors.personalInfo?.dateOfBirth ? "error" : ""}
                 />
                 {errors.personalInfo?.dateOfBirth && (
-                  <span className="error-message">{errors.personalInfo.dateOfBirth.message}</span>
+                  <span className="error-message">
+                    {errors.personalInfo.dateOfBirth.message}
+                  </span>
                 )}
               </div>
             </div>
-            
+
             <div className="form-group">
               <label>성별</label>
               <div className="radio-group">
@@ -312,76 +348,96 @@ const NestedObjects: React.FC = () => {
 
           <div className="form-section">
             <h3>주소 정보</h3>
-            
+
             <div className="form-group">
               <label htmlFor="address.street">도로명 주소</label>
               <input
                 id="address.street"
                 type="text"
-                {...register("address.street", { required: "도로명 주소를 입력해주세요" })}
+                {...register("address.street", {
+                  required: "도로명 주소를 입력해주세요",
+                })}
                 className={errors.address?.street ? "error" : ""}
               />
               {errors.address?.street && (
-                <span className="error-message">{errors.address.street.message}</span>
+                <span className="error-message">
+                  {errors.address.street.message}
+                </span>
               )}
             </div>
-            
+
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="address.city">도시</label>
                 <input
                   id="address.city"
                   type="text"
-                  {...register("address.city", { required: "도시를 입력해주세요" })}
+                  {...register("address.city", {
+                    required: "도시를 입력해주세요",
+                  })}
                   className={errors.address?.city ? "error" : ""}
                 />
                 {errors.address?.city && (
-                  <span className="error-message">{errors.address.city.message}</span>
+                  <span className="error-message">
+                    {errors.address.city.message}
+                  </span>
                 )}
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="address.state">시/도</label>
                 <input
                   id="address.state"
                   type="text"
-                  {...register("address.state", { required: "시/도를 입력해주세요" })}
+                  {...register("address.state", {
+                    required: "시/도를 입력해주세요",
+                  })}
                   className={errors.address?.state ? "error" : ""}
                 />
                 {errors.address?.state && (
-                  <span className="error-message">{errors.address.state.message}</span>
+                  <span className="error-message">
+                    {errors.address.state.message}
+                  </span>
                 )}
               </div>
             </div>
-            
+
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="address.zipCode">우편번호</label>
                 <input
                   id="address.zipCode"
                   type="text"
-                  {...register("address.zipCode", { required: "우편번호를 입력해주세요" })}
+                  {...register("address.zipCode", {
+                    required: "우편번호를 입력해주세요",
+                  })}
                   className={errors.address?.zipCode ? "error" : ""}
                 />
                 {errors.address?.zipCode && (
-                  <span className="error-message">{errors.address.zipCode.message}</span>
+                  <span className="error-message">
+                    {errors.address.zipCode.message}
+                  </span>
                 )}
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="address.country">국가</label>
                 <input
                   id="address.country"
                   type="text"
-                  {...register("address.country", { required: "국가를 입력해주세요" })}
+                  {...register("address.country", {
+                    required: "국가를 입력해주세요",
+                  })}
                   className={errors.address?.country ? "error" : ""}
                 />
                 {errors.address?.country && (
-                  <span className="error-message">{errors.address.country.message}</span>
+                  <span className="error-message">
+                    {errors.address.country.message}
+                  </span>
                 )}
               </div>
             </div>
-            
+
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="address.coordinates.latitude">위도</label>
@@ -389,25 +445,37 @@ const NestedObjects: React.FC = () => {
                   id="address.coordinates.latitude"
                   type="number"
                   step="0.000001"
-                  {...register("address.coordinates.latitude", { valueAsNumber: true })}
-                  className={errors.address?.coordinates?.latitude ? "error" : ""}
+                  {...register("address.coordinates.latitude", {
+                    valueAsNumber: true,
+                  })}
+                  className={
+                    errors.address?.coordinates?.latitude ? "error" : ""
+                  }
                 />
                 {errors.address?.coordinates?.latitude && (
-                  <span className="error-message">{errors.address.coordinates.latitude.message}</span>
+                  <span className="error-message">
+                    {errors.address.coordinates.latitude.message}
+                  </span>
                 )}
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="address.coordinates.longitude">경도</label>
                 <input
                   id="address.coordinates.longitude"
                   type="number"
                   step="0.000001"
-                  {...register("address.coordinates.longitude", { valueAsNumber: true })}
-                  className={errors.address?.coordinates?.longitude ? "error" : ""}
+                  {...register("address.coordinates.longitude", {
+                    valueAsNumber: true,
+                  })}
+                  className={
+                    errors.address?.coordinates?.longitude ? "error" : ""
+                  }
                 />
                 {errors.address?.coordinates?.longitude && (
-                  <span className="error-message">{errors.address.coordinates.longitude.message}</span>
+                  <span className="error-message">
+                    {errors.address.coordinates.longitude.message}
+                  </span>
                 )}
               </div>
             </div>
@@ -415,63 +483,79 @@ const NestedObjects: React.FC = () => {
 
           <div className="form-section">
             <h3>직업 정보</h3>
-            
+
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="employment.company">회사명</label>
                 <input
                   id="employment.company"
                   type="text"
-                  {...register("employment.company", { required: "회사명을 입력해주세요" })}
+                  {...register("employment.company", {
+                    required: "회사명을 입력해주세요",
+                  })}
                   className={errors.employment?.company ? "error" : ""}
                 />
                 {errors.employment?.company && (
-                  <span className="error-message">{errors.employment.company.message}</span>
+                  <span className="error-message">
+                    {errors.employment.company.message}
+                  </span>
                 )}
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="employment.position">직책</label>
                 <input
                   id="employment.position"
                   type="text"
-                  {...register("employment.position", { required: "직책을 입력해주세요" })}
+                  {...register("employment.position", {
+                    required: "직책을 입력해주세요",
+                  })}
                   className={errors.employment?.position ? "error" : ""}
                 />
                 {errors.employment?.position && (
-                  <span className="error-message">{errors.employment.position.message}</span>
+                  <span className="error-message">
+                    {errors.employment.position.message}
+                  </span>
                 )}
               </div>
             </div>
-            
+
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="employment.department">부서</label>
                 <input
                   id="employment.department"
                   type="text"
-                  {...register("employment.department", { required: "부서를 입력해주세요" })}
+                  {...register("employment.department", {
+                    required: "부서를 입력해주세요",
+                  })}
                   className={errors.employment?.department ? "error" : ""}
                 />
                 {errors.employment?.department && (
-                  <span className="error-message">{errors.employment.department.message}</span>
+                  <span className="error-message">
+                    {errors.employment.department.message}
+                  </span>
                 )}
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="employment.startDate">입사일</label>
                 <input
                   id="employment.startDate"
                   type="date"
-                  {...register("employment.startDate", { required: "입사일을 입력해주세요" })}
+                  {...register("employment.startDate", {
+                    required: "입사일을 입력해주세요",
+                  })}
                   className={errors.employment?.startDate ? "error" : ""}
                 />
                 {errors.employment?.startDate && (
-                  <span className="error-message">{errors.employment.startDate.message}</span>
+                  <span className="error-message">
+                    {errors.employment.startDate.message}
+                  </span>
                 )}
               </div>
             </div>
-            
+
             <div className="form-subsection">
               <h4>급여 정보</h4>
               <div className="form-row">
@@ -480,14 +564,18 @@ const NestedObjects: React.FC = () => {
                   <input
                     id="employment.salary.amount"
                     type="number"
-                    {...register("employment.salary.amount", { valueAsNumber: true })}
+                    {...register("employment.salary.amount", {
+                      valueAsNumber: true,
+                    })}
                     className={errors.employment?.salary?.amount ? "error" : ""}
                   />
                   {errors.employment?.salary?.amount && (
-                    <span className="error-message">{errors.employment.salary.amount.message}</span>
+                    <span className="error-message">
+                      {errors.employment.salary.amount.message}
+                    </span>
                   )}
                 </div>
-                
+
                 <div className="form-group">
                   <label htmlFor="employment.salary.currency">통화</label>
                   <select {...register("employment.salary.currency")}>
@@ -498,7 +586,7 @@ const NestedObjects: React.FC = () => {
                     ))}
                   </select>
                 </div>
-                
+
                 <div className="form-group">
                   <label>급여 주기</label>
                   <div className="radio-group">
@@ -522,7 +610,7 @@ const NestedObjects: React.FC = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="form-subsection">
               <h4>복리후생</h4>
               <div className="checkbox-group">
@@ -548,17 +636,25 @@ const NestedObjects: React.FC = () => {
                   <span>퇴직금</span>
                 </label>
               </div>
-              
+
               <div className="form-group">
-                <label htmlFor="employment.benefits.paidTimeOff">유급휴가 (일)</label>
+                <label htmlFor="employment.benefits.paidTimeOff">
+                  유급휴가 (일)
+                </label>
                 <input
                   id="employment.benefits.paidTimeOff"
                   type="number"
-                  {...register("employment.benefits.paidTimeOff", { valueAsNumber: true })}
-                  className={errors.employment?.benefits?.paidTimeOff ? "error" : ""}
+                  {...register("employment.benefits.paidTimeOff", {
+                    valueAsNumber: true,
+                  })}
+                  className={
+                    errors.employment?.benefits?.paidTimeOff ? "error" : ""
+                  }
                 />
                 {errors.employment?.benefits?.paidTimeOff && (
-                  <span className="error-message">{errors.employment.benefits.paidTimeOff.message}</span>
+                  <span className="error-message">
+                    {errors.employment.benefits.paidTimeOff.message}
+                  </span>
                 )}
               </div>
             </div>
@@ -566,63 +662,79 @@ const NestedObjects: React.FC = () => {
 
           <div className="form-section">
             <h3>교육 정보</h3>
-            
+
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="education.degree">학위</label>
                 <input
                   id="education.degree"
                   type="text"
-                  {...register("education.degree", { required: "학위를 입력해주세요" })}
+                  {...register("education.degree", {
+                    required: "학위를 입력해주세요",
+                  })}
                   className={errors.education?.degree ? "error" : ""}
                 />
                 {errors.education?.degree && (
-                  <span className="error-message">{errors.education.degree.message}</span>
+                  <span className="error-message">
+                    {errors.education.degree.message}
+                  </span>
                 )}
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="education.field">전공</label>
                 <input
                   id="education.field"
                   type="text"
-                  {...register("education.field", { required: "전공을 입력해주세요" })}
+                  {...register("education.field", {
+                    required: "전공을 입력해주세요",
+                  })}
                   className={errors.education?.field ? "error" : ""}
                 />
                 {errors.education?.field && (
-                  <span className="error-message">{errors.education.field.message}</span>
+                  <span className="error-message">
+                    {errors.education.field.message}
+                  </span>
                 )}
               </div>
             </div>
-            
+
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="education.institution">학교명</label>
                 <input
                   id="education.institution"
                   type="text"
-                  {...register("education.institution", { required: "학교명을 입력해주세요" })}
+                  {...register("education.institution", {
+                    required: "학교명을 입력해주세요",
+                  })}
                   className={errors.education?.institution ? "error" : ""}
                 />
                 {errors.education?.institution && (
-                  <span className="error-message">{errors.education.institution.message}</span>
+                  <span className="error-message">
+                    {errors.education.institution.message}
+                  </span>
                 )}
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="education.graduationYear">졸업년도</label>
                 <input
                   id="education.graduationYear"
                   type="number"
-                  {...register("education.graduationYear", { valueAsNumber: true })}
+                  {...register("education.graduationYear", {
+                    valueAsNumber: true,
+                  })}
                   className={errors.education?.graduationYear ? "error" : ""}
                 />
                 {errors.education?.graduationYear && (
-                  <span className="error-message">{errors.education.graduationYear.message}</span>
+                  <span className="error-message">
+                    {errors.education.graduationYear.message}
+                  </span>
                 )}
               </div>
             </div>
-            
+
             <div className="form-group">
               <label htmlFor="education.gpa">GPA</label>
               <input
@@ -635,14 +747,16 @@ const NestedObjects: React.FC = () => {
                 className={errors.education?.gpa ? "error" : ""}
               />
               {errors.education?.gpa && (
-                <span className="error-message">{errors.education.gpa.message}</span>
+                <span className="error-message">
+                  {errors.education.gpa.message}
+                </span>
               )}
             </div>
           </div>
 
           <div className="form-section">
             <h3>가족 정보</h3>
-            
+
             <div className="form-group">
               <label>결혼 상태</label>
               <div className="radio-group">
@@ -680,7 +794,7 @@ const NestedObjects: React.FC = () => {
                 </label>
               </div>
             </div>
-            
+
             {maritalStatus === "married" && (
               <div className="form-subsection conditional-section">
                 <h4>배우자 정보</h4>
@@ -694,20 +808,28 @@ const NestedObjects: React.FC = () => {
                       className={errors.family?.spouse?.name ? "error" : ""}
                     />
                     {errors.family?.spouse?.name && (
-                      <span className="error-message">{errors.family.spouse.name.message}</span>
+                      <span className="error-message">
+                        {errors.family.spouse.name.message}
+                      </span>
                     )}
                   </div>
-                  
+
                   <div className="form-group">
-                    <label htmlFor="family.spouse.occupation">배우자 직업</label>
+                    <label htmlFor="family.spouse.occupation">
+                      배우자 직업
+                    </label>
                     <input
                       id="family.spouse.occupation"
                       type="text"
                       {...register("family.spouse.occupation")}
-                      className={errors.family?.spouse?.occupation ? "error" : ""}
+                      className={
+                        errors.family?.spouse?.occupation ? "error" : ""
+                      }
                     />
                     {errors.family?.spouse?.occupation && (
-                      <span className="error-message">{errors.family.spouse.occupation.message}</span>
+                      <span className="error-message">
+                        {errors.family.spouse.occupation.message}
+                      </span>
                     )}
                   </div>
                 </div>
@@ -717,13 +839,17 @@ const NestedObjects: React.FC = () => {
 
           <div className="form-section">
             <h3>선호도</h3>
-            
+
             <div className="form-subsection">
               <h4>의사소통</h4>
               <div className="form-row">
                 <div className="form-group">
-                  <label htmlFor="preferences.communication.preferredLanguage">선호 언어</label>
-                  <select {...register("preferences.communication.preferredLanguage")}>
+                  <label htmlFor="preferences.communication.preferredLanguage">
+                    선호 언어
+                  </label>
+                  <select
+                    {...register("preferences.communication.preferredLanguage")}
+                  >
                     {languages.map((lang) => (
                       <option key={lang.value} value={lang.value}>
                         {lang.label}
@@ -731,9 +857,11 @@ const NestedObjects: React.FC = () => {
                     ))}
                   </select>
                 </div>
-                
+
                 <div className="form-group">
-                  <label htmlFor="preferences.communication.timezone">시간대</label>
+                  <label htmlFor="preferences.communication.timezone">
+                    시간대
+                  </label>
                   <select {...register("preferences.communication.timezone")}>
                     {timezones.map((tz) => (
                       <option key={tz.value} value={tz.value}>
@@ -743,7 +871,7 @@ const NestedObjects: React.FC = () => {
                   </select>
                 </div>
               </div>
-              
+
               <div className="form-group">
                 <label>알림 방법</label>
                 <div className="checkbox-group">
@@ -752,7 +880,9 @@ const NestedObjects: React.FC = () => {
                       <input
                         type="checkbox"
                         value={method.value}
-                        {...register("preferences.communication.notificationMethods")}
+                        {...register(
+                          "preferences.communication.notificationMethods"
+                        )}
                       />
                       <span>{method.label}</span>
                     </label>
@@ -760,7 +890,7 @@ const NestedObjects: React.FC = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="form-subsection">
               <h4>업무</h4>
               <div className="checkbox-group">
@@ -779,7 +909,7 @@ const NestedObjects: React.FC = () => {
                   <span>유연한 근무 시간</span>
                 </label>
               </div>
-              
+
               <div className="form-group">
                 <label>출장 의향</label>
                 <div className="radio-group">
@@ -810,7 +940,7 @@ const NestedObjects: React.FC = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="form-subsection">
               <h4>개인</h4>
               <div className="form-group">
@@ -828,7 +958,7 @@ const NestedObjects: React.FC = () => {
                   ))}
                 </div>
               </div>
-              
+
               <div className="form-group">
                 <label>관심사</label>
                 <div className="checkbox-group">
@@ -844,7 +974,7 @@ const NestedObjects: React.FC = () => {
                   ))}
                 </div>
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="preferences.personal.goals">목표</label>
                 <textarea
@@ -875,21 +1005,13 @@ const NestedObjects: React.FC = () => {
       <div className="code-explanation">
         <h3>주요 포인트</h3>
         <ul>
-          <li>
-            점 표기법으로 중첩된 객체 필드 접근
-          </li>
+          <li>점 표기법으로 중첩된 객체 필드 접근</li>
           <li>
             <code>watch</code>로 중첩된 필드 값 감시
           </li>
-          <li>
-            복잡한 중첩 구조의 유효성 검사
-          </li>
-          <li>
-            조건부 필드 렌더링
-          </li>
-          <li>
-            배열과 객체가 혼재된 복잡한 데이터 구조 처리
-          </li>
+          <li>복잡한 중첩 구조의 유효성 검사</li>
+          <li>조건부 필드 렌더링</li>
+          <li>배열과 객체가 혼재된 복잡한 데이터 구조 처리</li>
         </ul>
       </div>
     </div>

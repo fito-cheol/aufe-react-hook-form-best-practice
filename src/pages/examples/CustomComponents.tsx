@@ -19,7 +19,11 @@ interface CustomInputProps {
   children: React.ReactNode;
 }
 
-const CustomInput: React.FC<CustomInputProps> = ({ label, error, children }) => (
+const CustomInput: React.FC<CustomInputProps> = ({
+  label,
+  error,
+  children,
+}) => (
   <div className="custom-input">
     <label className="custom-label">{label}</label>
     {children}
@@ -187,15 +191,36 @@ const CustomComponents: React.FC = () => {
     <div className="page">
       <h1>커스텀 컴포넌트 예제</h1>
       <p className="page-description">
-        React Hook Form의 <code>Controller</code>를 사용하여 커스텀 컴포넌트를 만드는 예제입니다.
-        재사용 가능한 폼 컴포넌트를 구현하는 방법을 보여줍니다.
+        React Hook Form의 <code>Controller</code>를 사용하여 커스텀 컴포넌트를
+        만드는 예제입니다. 재사용 가능한 폼 컴포넌트를 구현하는 방법을
+        보여줍니다.
       </p>
 
       <div className="form-container">
+        <div className="form-actions" style={{ justifyContent: "flex-end", paddingTop: 0, marginTop: 0, borderTop: "none" }}>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() =>
+              reset({
+                name: "테스터",
+                email: "test@example.com",
+                age: 30,
+                country: "kr",
+                newsletter: true,
+                preferences: ["technology", "music"],
+                rating: 8,
+                comments: "컴포넌트 예시 데이터를 자동으로 채웠습니다.",
+              })
+            }
+          >
+            예시 채우기
+          </button>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)} className="form">
           <div className="form-section">
             <h3>기본 정보</h3>
-            
+
             <Controller
               name="name"
               control={control}
@@ -256,7 +281,7 @@ const CustomComponents: React.FC = () => {
 
           <div className="form-section">
             <h3>선택 사항</h3>
-            
+
             <Controller
               name="country"
               control={control}
@@ -302,7 +327,9 @@ const CustomComponents: React.FC = () => {
                           if (checked) {
                             field.onChange([...field.value, pref.value]);
                           } else {
-                            field.onChange(field.value.filter((v) => v !== pref.value));
+                            field.onChange(
+                              field.value.filter((v) => v !== pref.value)
+                            );
                           }
                         }}
                       />
@@ -315,7 +342,7 @@ const CustomComponents: React.FC = () => {
 
           <div className="form-section">
             <h3>추가 정보</h3>
-            
+
             <Controller
               name="rating"
               control={control}
@@ -374,12 +401,8 @@ const CustomComponents: React.FC = () => {
           <li>
             <code>field</code>와 <code>fieldState</code>로 상태 관리
           </li>
-          <li>
-            재사용 가능한 커스텀 컴포넌트 설계
-          </li>
-          <li>
-            복잡한 상태 로직을 컴포넌트 내부에서 처리
-          </li>
+          <li>재사용 가능한 커스텀 컴포넌트 설계</li>
+          <li>복잡한 상태 로직을 컴포넌트 내부에서 처리</li>
         </ul>
       </div>
     </div>

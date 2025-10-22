@@ -4,40 +4,46 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 // Zod 스키마 정의
-const schema = z.object({
-  username: z
-    .string()
-    .min(3, "사용자명은 최소 3자 이상이어야 합니다")
-    .max(20, "사용자명은 최대 20자까지 가능합니다")
-    .regex(/^[a-zA-Z0-9_]+$/, "사용자명은 영문, 숫자, 언더스코어만 사용 가능합니다"),
-  email: z
-    .string()
-    .email("올바른 이메일 형식을 입력해주세요"),
-  password: z
-    .string()
-    .min(8, "비밀번호는 최소 8자 이상이어야 합니다")
-    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/, 
-      "비밀번호는 대문자, 소문자, 숫자, 특수문자를 포함해야 합니다"),
-  confirmPassword: z.string(),
-  phone: z
-    .string()
-    .regex(/^010-\d{4}-\d{4}$/, "올바른 전화번호 형식을 입력해주세요 (010-0000-0000)"),
-  website: z
-    .string()
-    .url("올바른 URL 형식을 입력해주세요")
-    .optional()
-    .or(z.literal("")),
-  age: z
-    .number()
-    .min(18, "나이는 18세 이상이어야 합니다")
-    .max(100, "나이는 100세 이하여야 합니다"),
-  terms: z
-    .boolean()
-    .refine((val) => val === true, "약관에 동의해야 합니다"),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "비밀번호가 일치하지 않습니다",
-  path: ["confirmPassword"],
-});
+const schema = z
+  .object({
+    username: z
+      .string()
+      .min(3, "사용자명은 최소 3자 이상이어야 합니다")
+      .max(20, "사용자명은 최대 20자까지 가능합니다")
+      .regex(
+        /^[a-zA-Z0-9_]+$/,
+        "사용자명은 영문, 숫자, 언더스코어만 사용 가능합니다"
+      ),
+    email: z.string().email("올바른 이메일 형식을 입력해주세요"),
+    password: z
+      .string()
+      .min(8, "비밀번호는 최소 8자 이상이어야 합니다")
+      .regex(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
+        "비밀번호는 대문자, 소문자, 숫자, 특수문자를 포함해야 합니다"
+      ),
+    confirmPassword: z.string(),
+    phone: z
+      .string()
+      .regex(
+        /^010-\d{4}-\d{4}$/,
+        "올바른 전화번호 형식을 입력해주세요 (010-0000-0000)"
+      ),
+    website: z
+      .string()
+      .url("올바른 URL 형식을 입력해주세요")
+      .optional()
+      .or(z.literal("")),
+    age: z
+      .number()
+      .min(18, "나이는 18세 이상이어야 합니다")
+      .max(100, "나이는 100세 이하여야 합니다"),
+    terms: z.boolean().refine((val) => val === true, "약관에 동의해야 합니다"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "비밀번호가 일치하지 않습니다",
+    path: ["confirmPassword"],
+  });
 
 type FormData = z.infer<typeof schema>;
 
@@ -72,11 +78,31 @@ const Validation: React.FC = () => {
     <div className="page">
       <h1>유효성 검사 예제</h1>
       <p className="page-description">
-        Zod 스키마를 사용한 강력한 유효성 검사 예제입니다.
-        다양한 유효성 검사 규칙과 에러 메시지를 보여줍니다.
+        Zod 스키마를 사용한 강력한 유효성 검사 예제입니다. 다양한 유효성 검사
+        규칙과 에러 메시지를 보여줍니다.
       </p>
 
       <div className="form-container">
+        <div className="form-actions" style={{ justifyContent: "flex-end", paddingTop: 0, marginTop: 0, borderTop: "none" }}>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() =>
+              reset({
+                username: "test_user",
+                email: "test@example.com",
+                password: "Aa!23456",
+                confirmPassword: "Aa!23456",
+                phone: "010-1234-5678",
+                website: "https://example.com",
+                age: 25,
+                terms: true,
+              })
+            }
+          >
+            예시 채우기
+          </button>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)} className="form">
           <div className="form-group">
             <label htmlFor="username">사용자명</label>
@@ -130,7 +156,9 @@ const Validation: React.FC = () => {
               placeholder="비밀번호를 다시 입력해주세요"
             />
             {errors.confirmPassword && (
-              <span className="error-message">{errors.confirmPassword.message}</span>
+              <span className="error-message">
+                {errors.confirmPassword.message}
+              </span>
             )}
           </div>
 
@@ -192,8 +220,8 @@ const Validation: React.FC = () => {
           </div>
 
           <div className="form-actions">
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="btn btn-primary"
               disabled={isSubmitting}
             >
@@ -219,9 +247,7 @@ const Validation: React.FC = () => {
           <li>
             <code>zodResolver</code>로 React Hook Form과 Zod 연동
           </li>
-          <li>
-            정규식을 사용한 복잡한 유효성 검사 규칙
-          </li>
+          <li>정규식을 사용한 복잡한 유효성 검사 규칙</li>
           <li>
             <code>refine</code>을 사용한 커스텀 유효성 검사
           </li>

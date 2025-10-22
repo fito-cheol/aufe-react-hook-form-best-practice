@@ -30,7 +30,7 @@ const FileUpload: React.FC = () => {
 
   const onSubmit = (data: FormData) => {
     console.log("파일 업로드 데이터:", data);
-    
+
     // 파일 정보 출력
     if (data.profileImage && data.profileImage.length > 0) {
       console.log("프로필 이미지:", data.profileImage[0]);
@@ -41,7 +41,7 @@ const FileUpload: React.FC = () => {
     if (data.resume && data.resume.length > 0) {
       console.log("이력서:", data.resume[0]);
     }
-    
+
     alert("파일이 성공적으로 업로드되었습니다!\n콘솔을 확인해보세요.");
   };
 
@@ -57,11 +57,29 @@ const FileUpload: React.FC = () => {
     <div className="page">
       <h1>파일 업로드 예제</h1>
       <p className="page-description">
-        React Hook Form을 사용한 파일 업로드 처리 예제입니다.
-        다양한 파일 타입과 크기 제한을 보여줍니다.
+        React Hook Form을 사용한 파일 업로드 처리 예제입니다. 다양한 파일 타입과
+        크기 제한을 보여줍니다.
       </p>
 
       <div className="form-container">
+        <div className="form-actions" style={{ justifyContent: "flex-end", paddingTop: 0, marginTop: 0, borderTop: "none" }}>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() =>
+              reset({
+                name: "업로더",
+                email: "uploader@example.com",
+                // 파일 입력은 보안 제약으로 프로그래매틱 세팅 불가
+                profileImage: undefined as unknown as FileList,
+                documents: undefined as unknown as FileList,
+                resume: undefined as unknown as FileList,
+              })
+            }
+          >
+            예시 채우기 (파일 제외)
+          </button>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)} className="form">
           <div className="form-section">
             <h3>기본 정보</h3>
@@ -106,15 +124,26 @@ const FileUpload: React.FC = () => {
                     fileSize: (files) => {
                       if (files && files.length > 0) {
                         const file = files[0];
-                        return file.size <= 5 * 1024 * 1024 || "파일 크기는 5MB 이하여야 합니다";
+                        return (
+                          file.size <= 5 * 1024 * 1024 ||
+                          "파일 크기는 5MB 이하여야 합니다"
+                        );
                       }
                       return true;
                     },
                     fileType: (files) => {
                       if (files && files.length > 0) {
                         const file = files[0];
-                        const allowedTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"];
-                        return allowedTypes.includes(file.type) || "JPEG, PNG, GIF, WebP 파일만 업로드 가능합니다";
+                        const allowedTypes = [
+                          "image/jpeg",
+                          "image/png",
+                          "image/gif",
+                          "image/webp",
+                        ];
+                        return (
+                          allowedTypes.includes(file.type) ||
+                          "JPEG, PNG, GIF, WebP 파일만 업로드 가능합니다"
+                        );
                       }
                       return true;
                     },
@@ -123,9 +152,11 @@ const FileUpload: React.FC = () => {
                 className={errors.profileImage ? "error" : ""}
               />
               {errors.profileImage && (
-                <span className="error-message">{errors.profileImage.message}</span>
+                <span className="error-message">
+                  {errors.profileImage.message}
+                </span>
               )}
-              
+
               {profileImage && profileImage.length > 0 && (
                 <div className="file-preview">
                   <p>선택된 파일: {profileImage[0].name}</p>
@@ -149,7 +180,10 @@ const FileUpload: React.FC = () => {
                   validate: {
                     fileCount: (files) => {
                       if (files && files.length > 0) {
-                        return files.length <= 5 || "최대 5개 파일까지 업로드 가능합니다";
+                        return (
+                          files.length <= 5 ||
+                          "최대 5개 파일까지 업로드 가능합니다"
+                        );
                       }
                       return true;
                     },
@@ -169,15 +203,19 @@ const FileUpload: React.FC = () => {
                 className={errors.documents ? "error" : ""}
               />
               {errors.documents && (
-                <span className="error-message">{errors.documents.message}</span>
+                <span className="error-message">
+                  {errors.documents.message}
+                </span>
               )}
-              
+
               {documents && documents.length > 0 && (
                 <div className="file-preview">
                   <h4>선택된 문서들:</h4>
                   {Array.from(documents).map((file, index) => (
                     <div key={index} className="file-item">
-                      <p>파일 {index + 1}: {file.name}</p>
+                      <p>
+                        파일 {index + 1}: {file.name}
+                      </p>
                       <p>크기: {formatFileSize(file.size)}</p>
                     </div>
                   ))}
@@ -199,14 +237,20 @@ const FileUpload: React.FC = () => {
                     fileType: (files) => {
                       if (files && files.length > 0) {
                         const file = files[0];
-                        return file.type === "application/pdf" || "PDF 파일만 업로드 가능합니다";
+                        return (
+                          file.type === "application/pdf" ||
+                          "PDF 파일만 업로드 가능합니다"
+                        );
                       }
                       return true;
                     },
                     fileSize: (files) => {
                       if (files && files.length > 0) {
                         const file = files[0];
-                        return file.size <= 20 * 1024 * 1024 || "파일 크기는 20MB 이하여야 합니다";
+                        return (
+                          file.size <= 20 * 1024 * 1024 ||
+                          "파일 크기는 20MB 이하여야 합니다"
+                        );
                       }
                       return true;
                     },
@@ -217,7 +261,7 @@ const FileUpload: React.FC = () => {
               {errors.resume && (
                 <span className="error-message">{errors.resume.message}</span>
               )}
-              
+
               {resume && resume.length > 0 && (
                 <div className="file-preview">
                   <p>선택된 파일: {resume[0].name}</p>
