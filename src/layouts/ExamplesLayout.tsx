@@ -1,36 +1,16 @@
 import React from "react";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { examplesNavItems } from "../data/examplesNav";
-import { featureCatalog } from "../data/featureCatalog";
+import { Outlet, useLocation } from "react-router-dom";
+import ExamplesLeftBar from "../components/ExamplesLeftBar";
+import FeatureLeftBar from "../components/FeatureLeftBar";
 
 const ExamplesLayout: React.FC = () => {
   const location = useLocation();
   const isFeatureGuide = location.pathname.startsWith("/examples/features");
 
-  const leftbarItems = isFeatureGuide
-    ? featureCatalog.map((f) => ({ label: f.title, to: `/examples/features#${f.id}` }))
-    : examplesNavItems;
-
   return (
     <div className="examples-layout">
       <aside className="examples-leftbar">
-        <nav>
-          <ul>
-            {leftbarItems.map((item) => (
-              <li key={item.to}>
-                <NavLink
-                  to={item.to}
-                  className={({ isActive }) =>
-                    "leftbar-link" + (isActive ? " active" : "")
-                  }
-                  end
-                >
-                  {item.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {isFeatureGuide ? <FeatureLeftBar /> : <ExamplesLeftBar />}
       </aside>
 
       <section className="examples-content">
