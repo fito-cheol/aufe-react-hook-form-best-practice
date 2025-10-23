@@ -64,18 +64,4 @@ export const featureCatalog: FeatureItem[] = [
     docs: "https://react-hook-form.com/docs/usewatch",
     route: "/examples/conditional-fields",
   },
-  {
-    id: "NestedObject",
-    title: "중첩 객체 (dot notation)",
-    description: "점 표기법으로 중첩 필드 등록/검증",
-    docs: "https://react-hook-form.com/advanced-usage#FieldArrays",
-    route: "/examples/nested-objects",
-  },
-  {
-    id: "FileInputs",
-    title: "파일 입력 처리",
-    description: "FileList와 유효성 검사 처리",
-    docs: "https://react-hook-form.com/advanced-usage#IntegratingControlledInputs",
-    route: "/examples/file-upload",
-  },
 ];
