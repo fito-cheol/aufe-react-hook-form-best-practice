@@ -301,3 +301,194 @@ export const nestedObjectsExamples = [
 });`,
   },
 ];
+
+// 각 기능별 맞춤형 예시 코드
+export const useFormExamples = [
+  {
+    title: "useForm 훅 기본 사용법",
+    description: "useForm 훅을 사용한 기본적인 폼 상태 관리",
+    code: `import { useForm } from "react-hook-form";
+
+const { register, handleSubmit, formState: { errors } } = useForm();
+
+const onSubmit = (data) => {
+  console.log("폼 데이터:", data);
+};
+
+return (
+  <form onSubmit={handleSubmit(onSubmit)}>
+    <input {...register("name", { required: true })} />
+    {errors.name && <span>이름을 입력해주세요</span>}
+    <button type="submit">제출</button>
+  </form>
+);`,
+  },
+];
+
+export const registerExamples = [
+  {
+    title: "register 함수 사용법",
+    description: "입력 필드를 React Hook Form에 등록하는 방법",
+    code: `// 기본 등록
+<input {...register("name")} />
+
+// 유효성 검사와 함께 등록
+<input {...register("email", { 
+  required: "이메일을 입력해주세요",
+  pattern: {
+    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$/i,
+    message: "올바른 이메일 형식이 아닙니다"
+  }
+})} />
+
+// 중첩 필드 등록
+<input {...register("address.street")} />`,
+  },
+];
+
+export const handleSubmitExamples = [
+  {
+    title: "handleSubmit 함수 사용법",
+    description: "폼 제출 시 유효성 검사와 데이터 처리",
+    code: `const onSubmit = (data) => {
+  console.log("폼 데이터:", data);
+  // API 호출 또는 데이터 처리
+};
+
+const onError = (errors) => {
+  console.log("유효성 검사 실패:", errors);
+};
+
+return (
+  <form onSubmit={handleSubmit(onSubmit, onError)}>
+    <input {...register("name", { required: true })} />
+    <button type="submit">제출</button>
+  </form>
+);`,
+  },
+];
+
+export const formStateErrorsExamples = [
+  {
+    title: "formState.errors 사용법",
+    description: "에러 상태를 통한 유효성 검사 메시지 표시",
+    code: `const { register, handleSubmit, formState: { errors } } = useForm();
+
+<form onSubmit={handleSubmit(onSubmit)}>
+  <input {...register("email", { 
+    required: "이메일을 입력해주세요",
+    pattern: {
+      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$/i,
+      message: "올바른 이메일 형식이 아닙니다"
+    }
+  })} />
+  {errors.email && <span>{errors.email.message}</span>}
+  
+  <button type="submit">제출</button>
+</form>`,
+  },
+];
+
+export const zodResolverExamples = [
+  {
+    title: "zodResolver 연동",
+    description: "React Hook Form과 Zod를 연결하는 zodResolver 사용법",
+    code: `import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+const schema = z.object({
+  name: z.string().min(1, "이름을 입력해주세요"),
+  email: z.string().email("올바른 이메일 형식이 아닙니다"),
+  age: z.number().min(18, "18세 이상이어야 합니다")
+});
+
+const { register, handleSubmit, formState: { errors } } = useForm({
+  resolver: zodResolver(schema),
+});`,
+  },
+];
+
+export const useFieldArrayExamples = [
+  {
+    title: "useFieldArray 기본 사용법",
+    description: "동적 배열 필드를 관리하는 useFieldArray 훅 사용법",
+    code: `import { useForm, useFieldArray } from "react-hook-form";
+
+const { control, register } = useForm({
+  defaultValues: { items: [{ name: "" }] }
+});
+
+const { fields, append, remove } = useFieldArray({ 
+  control, 
+  name: "items" 
+});
+
+return (
+  <div>
+    {fields.map((field, index) => (
+      <div key={field.id}>
+        <input {...register(\`items.\${index}.name\`)} />
+        <button type="button" onClick={() => remove(index)}>
+          삭제
+        </button>
+      </div>
+    ))}
+    <button type="button" onClick={() => append({ name: "" })}>
+      항목 추가
+    </button>
+  </div>
+);`,
+  },
+];
+
+export const controllerExamples = [
+  {
+    title: "Controller 컴포넌트 사용법",
+    description: "외부 컴포넌트를 React Hook Form과 연결하는 Controller 사용법",
+    code: `import { Controller } from "react-hook-form";
+
+<Controller
+  name="customField"
+  control={control}
+  render={({ field }) => (
+    <CustomInput 
+      value={field.value}
+      onChange={field.onChange}
+      onBlur={field.onBlur}
+    />
+  )}
+/>
+
+// 커스텀 컴포넌트 예시
+const CustomInput = ({ value, onChange, onBlur }) => (
+  <input
+    value={value}
+    onChange={(e) => onChange(e.target.value)}
+    onBlur={onBlur}
+  />
+);`,
+  },
+];
+
+export const useWatchExamples = [
+  {
+    title: "useWatch 훅 사용법",
+    description: "특정 필드 값을 감시하여 조건부 렌더링을 위한 useWatch 사용법",
+    code: `import { useWatch } from "react-hook-form";
+
+const watchedValue = useWatch({
+  control,
+  name: "fieldName"
+});
+
+return (
+  <div>
+    <input {...register("fieldName")} />
+    {watchedValue === "specificValue" && (
+      <input {...register("conditionalField")} />
+    )}
+  </div>
+);`,
+  },
+];

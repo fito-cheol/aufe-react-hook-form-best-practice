@@ -3,23 +3,29 @@ import { Link } from "react-router-dom";
 import { featureCatalog } from "../../data/featureCatalog";
 import CodeExample from "../../components/CodeExample";
 import {
-  basicFormExamples,
-  validationExamples,
-  dynamicFieldsExamples,
-  customComponentsExamples,
-  conditionalFieldsExamples,
+  useFormExamples,
+  registerExamples,
+  handleSubmitExamples,
+  formStateErrorsExamples,
+  zodResolverExamples,
+  useFieldArrayExamples,
+  controllerExamples,
+  useWatchExamples,
   nestedObjectsExamples,
 } from "../../data/codeExamples";
 
 const examplesByFeature: Record<string, { title: string; items: any[] }> = {
-  useForm: { title: "useForm", items: basicFormExamples },
-  register: { title: "register", items: basicFormExamples },
-  handleSubmit: { title: "handleSubmit", items: basicFormExamples },
-  formState: { title: "formState.errors", items: validationExamples },
-  zodResolver: { title: "zodResolver", items: validationExamples },
-  useFieldArray: { title: "useFieldArray", items: dynamicFieldsExamples },
-  Controller: { title: "Controller", items: customComponentsExamples },
-  useWatch: { title: "useWatch", items: conditionalFieldsExamples },
+  useForm: { title: "useForm", items: useFormExamples },
+  register: { title: "register", items: registerExamples },
+  handleSubmit: { title: "handleSubmit", items: handleSubmitExamples },
+  "formState.errors": {
+    title: "formState.errors",
+    items: formStateErrorsExamples,
+  },
+  zodResolver: { title: "zodResolver", items: zodResolverExamples },
+  useFieldArray: { title: "useFieldArray", items: useFieldArrayExamples },
+  Controller: { title: "Controller", items: controllerExamples },
+  useWatch: { title: "useWatch", items: useWatchExamples },
   NestedObject: { title: "중첩 객체", items: nestedObjectsExamples },
 };
 
